@@ -73,6 +73,19 @@
     <string>Devices</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="addDevice">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>490</y>
+     <width>90</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
