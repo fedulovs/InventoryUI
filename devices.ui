@@ -76,8 +76,8 @@
   <widget class="QPushButton" name="addDevice">
    <property name="geometry">
     <rect>
-     <x>630</x>
-     <y>490</y>
+     <x>640</x>
+     <y>300</y>
      <width>90</width>
      <height>23</height>
     </rect>

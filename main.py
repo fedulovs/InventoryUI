@@ -13,10 +13,9 @@ class MainWindow(QDialog):
 
         self.setStyleSheet("background-color: white;")
 
-        # set the title
         self.setWindowTitle("Device inventory")
 
-        # setting the geometry of window
+        # setting the geometry of main window
         self.setGeometry(0, 0, 900, 2000)
 
         # button settings
@@ -52,6 +51,30 @@ class MainWindow(QDialog):
 
     def add_device(self):
         print("clicked")
+        add_device1 = DeviceDialog1()
+        widget.addWidget(add_device1)
+        widget.setFixedHeight(500)
+        widget.setFixedWidth(400)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class DeviceDialog1(QDialog):
+    def __init__(self):
+        super(DeviceDialog1, self).__init__()
+        loadUi("add_device1.ui", self)
+        self.setGeometry(0, 0, 400, 300)
+
+        self.backButton.setStyleSheet(
+            "border-radius : 50; border: 2 px solid black; color: black")
+        self.backButton.setGeometry(10, 10, 100, 100)
+        self.backButton.clicked.connect(lambda: self.go_back())
+
+    def go_back(self):
+        mainwindow = MainWindow()
+        widget.addWidget(mainwindow)
+        widget.setFixedHeight(850)
+        widget.setFixedWidth(1120)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 app = QApplication(sys.argv)
