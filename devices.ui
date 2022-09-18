@@ -82,6 +82,9 @@
      <height>23</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius : 50; border: 2 px solid black; background-color : #414BB2; color: white</string>
+   </property>
    <property name="text">
     <string>Add</string>
    </property>
