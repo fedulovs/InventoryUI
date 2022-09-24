@@ -79,9 +79,9 @@ class DeviceDialog1(QDialog):
         widget.setFixedHeight(500)
         widget.setFixedWidth(400)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-        device['device'] = self.deviceInput.text()
         device['brand'] = self.brandInput.text()
-        print(device)
+        device['device'] = self.deviceInput.text()
+
 
     def go_back(self):
         print("Going back to main window")
@@ -111,7 +111,7 @@ class DeviceDialog2(QDialog):
         widget.setFixedHeight(500)
         widget.setFixedWidth(400)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-        device['os'] = self.osInput.text()
+        device['os_version'] = self.osInput.text()
 
     def go_back(self):
         print("Going back to screen 1")
@@ -141,7 +141,7 @@ class DeviceDialog3(QDialog):
         widget.setFixedHeight(500)
         widget.setFixedWidth(400)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-        device['comment'] = self.commentsInput.toPlainText()
+        device['comments'] = self.commentsInput.toPlainText()
 
     def go_back(self):
         print("Going back to screen 2")
@@ -172,15 +172,17 @@ class DeviceDialog4(QDialog):
 
     def open_confirmation_screen(self):
         print("Confirmation button clicked")
-        add_device4 = DeviceDialog4()
-        widget.addWidget(add_device4)
-        widget.setFixedHeight(500)
-        widget.setFixedWidth(400)
-        widget.setCurrentIndex(widget.currentIndex() + 1)
-        device["not_compatible_with"] = self.dropdown.currentText()
 
-        for value in device.keys():
-            print(value)
+        device['not_compatible_with'] = self.dropdown.currentText()
+        device['owner'] = 'Sergey'
+
+        self.request_add_device()
+
+        # print device fields
+        for key in device.keys():
+            print(device.get(key))
+
+        print(device)
 
     def go_back(self):
         print("Going back to screen 3")
@@ -189,6 +191,20 @@ class DeviceDialog4(QDialog):
         widget.setFixedHeight(500)
         widget.setFixedWidth(400)
         widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    def request_add_device(self):
+        # {
+        #     "brand": "string",
+        #     "device": "string",
+        #     "owner": "string",
+        #     "os_version": "string",
+        #     "comments": "string",
+        #     "not_compatible_with": "string"
+        # }
+
+        url = "http://127.0.0.1:8000/create-item"
+        res = requests.post(url, json=device)
+        print(res.json())
 
 
 app = QApplication(sys.argv)
