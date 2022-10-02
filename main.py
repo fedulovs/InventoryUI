@@ -8,12 +8,26 @@ from PyQt5.uic import loadUi
 device = {}
 
 
+class LoginWindow(QDialog):
+    def __init__(self):
+        super(LoginWindow, self).__init__()
+        loadUi("login_screen.ui", self)
+
+        self.login_button.clicked.connect(lambda: self.open_devices_list())
+
+    def open_devices_list(self):
+        print("Login button clicked")
+        main_window = MainWindow()
+        widget.addWidget(main_window)
+        widget.setFixedHeight(800)
+        widget.setFixedWidth(1200)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
 class MainWindow(QDialog):
     def __init__(self):
         super(MainWindow, self).__init__()
         loadUi("devices.ui", self)
-
-        self.setStyleSheet("background-color: white;")
 
         self.setWindowTitle("Device inventory")
 
@@ -21,9 +35,9 @@ class MainWindow(QDialog):
         self.setGeometry(0, 0, 900, 2000)
 
         # Add button settings
-        self.addDevice.setGeometry(200, 150, 100, 100)
-        self.addDevice.move(1000, 700)
-        self.addDevice.clicked.connect(lambda: self.add_device())
+        self.add_device_button.setGeometry(200, 150, 100, 100)
+        self.add_device_button.move(1000, 600)
+        self.add_device_button.clicked.connect(lambda: self.add_device())
 
         self.tableWidget.resize(950, 700)
         self.tableWidget.setColumnWidth(0, 100)
@@ -82,7 +96,6 @@ class DeviceDialog1(QDialog):
         device['brand'] = self.brandInput.text()
         device['device'] = self.deviceInput.text()
 
-
     def go_back(self):
         print("Going back to main window")
         mainwindow = MainWindow()
@@ -108,8 +121,8 @@ class DeviceDialog2(QDialog):
         print("Open Comments button clicked")
         add_device3 = DeviceDialog3()
         widget.addWidget(add_device3)
-        widget.setFixedHeight(500)
-        widget.setFixedWidth(400)
+        widget.setFixedHeight(501)
+        widget.setFixedWidth(411)
         widget.setCurrentIndex(widget.currentIndex() + 1)
         device['os_version'] = self.osInput.text()
 
@@ -117,8 +130,8 @@ class DeviceDialog2(QDialog):
         print("Going back to screen 1")
         add_device1 = DeviceDialog1()
         widget.addWidget(add_device1)
-        widget.setFixedHeight(500)
-        widget.setFixedWidth(400)
+        widget.setFixedHeight(501)
+        widget.setFixedWidth(411)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
@@ -138,8 +151,8 @@ class DeviceDialog3(QDialog):
         print("Open Not compatible button clicked")
         add_device4 = DeviceDialog4()
         widget.addWidget(add_device4)
-        widget.setFixedHeight(500)
-        widget.setFixedWidth(400)
+        widget.setFixedHeight(501)
+        widget.setFixedWidth(411)
         widget.setCurrentIndex(widget.currentIndex() + 1)
         device['comments'] = self.commentsInput.toPlainText()
 
@@ -147,8 +160,8 @@ class DeviceDialog3(QDialog):
         print("Going back to screen 2")
         add_device2 = DeviceDialog2()
         widget.addWidget(add_device2)
-        widget.setFixedHeight(500)
-        widget.setFixedWidth(400)
+        widget.setFixedHeight(501)
+        widget.setFixedWidth(411)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
@@ -186,10 +199,10 @@ class DeviceDialog4(QDialog):
 
     def go_back(self):
         print("Going back to screen 3")
-        add_device2 = DeviceDialog2()
-        widget.addWidget(add_device2)
-        widget.setFixedHeight(500)
-        widget.setFixedWidth(400)
+        add_device3 = DeviceDialog3()
+        widget.addWidget(add_device3)
+        widget.setFixedHeight(501)
+        widget.setFixedWidth(411)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def request_add_device(self):
@@ -208,11 +221,13 @@ class DeviceDialog4(QDialog):
 
 
 app = QApplication(sys.argv)
-mainwindow = MainWindow()
+
+login_window = LoginWindow()
 widget = QtWidgets.QStackedWidget()
-widget.addWidget(mainwindow)
-widget.setFixedHeight(850)
-widget.setFixedWidth(1120)
+widget.addWidget(login_window)
+
+widget.setFixedHeight(800)
+widget.setFixedWidth(1200)
 widget.show()
 try:
     sys.exit(app.exec_())

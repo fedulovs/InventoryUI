@@ -6,173 +6,210 @@
             <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>405</width>
-                <height>491</height>
+                <width>412</width>
+                <height>504</height>
             </rect>
         </property>
         <property name="windowTitle">
             <string>Dialog</string>
         </property>
-        <widget class="QWidget" name="verticalLayoutWidget">
+        <widget class="QWidget" name="widget" native="true">
             <property name="geometry">
                 <rect>
-                    <x>-1</x>
-                    <y>-1</y>
+                    <x>0</x>
+                    <y>0</y>
                     <width>411</width>
-                    <height>46</height>
+                    <height>501</height>
                 </rect>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout">
-                <property name="leftMargin">
-                    <number>5</number>
-                </property>
-                <property name="topMargin">
-                    <number>5</number>
-                </property>
-                <item>
-                    <widget class="QPushButton" name="backButton">
-                        <property name="sizePolicy">
-                            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>0</width>
-                                <height>40</height>
-                            </size>
-                        </property>
-                        <property name="maximumSize">
-                            <size>
-                                <width>50</width>
-                                <height>50</height>
-                            </size>
-                        </property>
-                        <property name="text">
-                            <string>&lt;</string>
-                        </property>
-                    </widget>
-                </item>
-            </layout>
-        </widget>
-        <widget class="QWidget" name="horizontalLayoutWidget">
-            <property name="geometry">
-                <rect>
-                    <x>-1</x>
-                    <y>29</y>
-                    <width>411</width>
-                    <height>42</height>
-                </rect>
+            <property name="styleSheet">
+                <string notr="true">background-color: #FFFFFF;</string>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout">
-                <property name="sizeConstraint">
-                    <enum>QLayout::SetNoConstraint</enum>
+            <widget class="QWidget" name="horizontalLayoutWidget">
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>30</y>
+                        <width>411</width>
+                        <height>42</height>
+                    </rect>
                 </property>
-                <item>
-                    <widget class="QLabel" name="title">
-                        <property name="sizePolicy">
-                            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>0</width>
-                                <height>40</height>
-                            </size>
-                        </property>
-                        <property name="font">
-                            <font>
-                                <pointsize>10</pointsize>
-                            </font>
-                        </property>
-                        <property name="text">
-                            <string>Device</string>
-                        </property>
-                        <property name="alignment">
-                            <set>Qt::AlignCenter</set>
-                        </property>
-                    </widget>
-                </item>
-            </layout>
-        </widget>
-        <widget class="QWidget" name="verticalLayoutWidget_2">
-            <property name="geometry">
-                <rect>
-                    <x>-1</x>
-                    <y>70</y>
-                    <width>411</width>
-                    <height>441</height>
-                </rect>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
-                <property name="leftMargin">
-                    <number>30</number>
+                <layout class="QHBoxLayout" name="horizontalLayout_5">
+                    <property name="sizeConstraint">
+                        <enum>QLayout::SetNoConstraint</enum>
+                    </property>
+                    <item>
+                        <widget class="QLabel" name="title">
+                            <property name="sizePolicy">
+                                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>0</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <pointsize>10</pointsize>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>Device</string>
+                            </property>
+                            <property name="alignment">
+                                <set>Qt::AlignCenter</set>
+                            </property>
+                        </widget>
+                    </item>
+                </layout>
+            </widget>
+            <widget class="QWidget" name="verticalLayoutWidget_2">
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>71</y>
+                        <width>411</width>
+                        <height>441</height>
+                    </rect>
                 </property>
-                <property name="topMargin">
-                    <number>0</number>
+                <layout class="QVBoxLayout" name="verticalLayout_10">
+                    <property name="leftMargin">
+                        <number>30</number>
+                    </property>
+                    <property name="topMargin">
+                        <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                        <number>30</number>
+                    </property>
+                    <item>
+                        <widget class="QLineEdit" name="deviceInput">
+                            <property name="minimumSize">
+                                <size>
+                                    <width>0</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <pointsize>10</pointsize>
+                                </font>
+                            </property>
+                            <property name="styleSheet">
+                                <string notr="true">border-radius : 7; border: 2px solid #D1D1D1</string>
+                            </property>
+                            <property name="placeholderText">
+                                <string>Device</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QLineEdit" name="brandInput">
+                            <property name="minimumSize">
+                                <size>
+                                    <width>0</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <pointsize>10</pointsize>
+                                </font>
+                            </property>
+                            <property name="styleSheet">
+                                <string notr="true">border-radius : 7; border: 2px solid #D1D1D1</string>
+                            </property>
+                            <property name="placeholderText">
+                                <string>Brand</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="nextButton">
+                            <property name="sizePolicy">
+                                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>0</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <pointsize>10</pointsize>
+                                </font>
+                            </property>
+                            <property name="styleSheet">
+                                <string notr="true">border-radius : 15; border: 2 px solid black; background-color:
+                                    #414BB2; color: white;
+
+                                    pressed ({
+                                    border: 4px solid #090;
+                                    border-radius: 5px
+                                    })
+                                </string>
+                            </property>
+                            <property name="text">
+                                <string>Next</string>
+                            </property>
+                        </widget>
+                    </item>
+                </layout>
+            </widget>
+            <widget class="QWidget" name="verticalLayoutWidget">
+                <property name="geometry">
+                    <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>411</width>
+                        <height>46</height>
+                    </rect>
                 </property>
-                <property name="rightMargin">
-                    <number>30</number>
-                </property>
-                <item>
-                    <widget class="QLineEdit" name="deviceInput">
-                        <property name="minimumSize">
-                            <size>
-                                <width>0</width>
-                                <height>40</height>
-                            </size>
-                        </property>
-                        <property name="placeholderText">
-                            <string>Device</string>
-                        </property>
-                    </widget>
-                </item>
-                <item>
-                    <widget class="QLineEdit" name="brandInput">
-                        <property name="minimumSize">
-                            <size>
-                                <width>0</width>
-                                <height>40</height>
-                            </size>
-                        </property>
-                        <property name="placeholderText">
-                            <string>Brand</string>
-                        </property>
-                    </widget>
-                </item>
-                <item>
-                    <widget class="QPushButton" name="nextButton">
-                        <property name="sizePolicy">
-                            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>0</width>
-                                <height>40</height>
-                            </size>
-                        </property>
-                        <property name="font">
-                            <font>
-                                <pointsize>10</pointsize>
-                            </font>
-                        </property>
-                        <property name="styleSheet">
-                            <string notr="true">border-radius : 50; border: 2 px solid black; background-color :
-                                #414BB2; color: white
-                            </string>
-                        </property>
-                        <property name="text">
-                            <string>Next</string>
-                        </property>
-                    </widget>
-                </item>
-            </layout>
+                <layout class="QVBoxLayout" name="verticalLayout_11">
+                    <property name="leftMargin">
+                        <number>5</number>
+                    </property>
+                    <property name="topMargin">
+                        <number>5</number>
+                    </property>
+                    <item>
+                        <widget class="QPushButton" name="backButton">
+                            <property name="sizePolicy">
+                                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>0</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>50</width>
+                                    <height>50</height>
+                                </size>
+                            </property>
+                            <property name="styleSheet">
+                                <string notr="true">border-radius : 7; border: 2px solid #D1D1D1</string>
+                            </property>
+                            <property name="text">
+                                <string>&lt;</string>
+                            </property>
+                        </widget>
+                    </item>
+                </layout>
+            </widget>
         </widget>
     </widget>
     <resources/>

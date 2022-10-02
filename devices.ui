@@ -6,88 +6,101 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>795</width>
-    <height>583</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>110</y>
-     <width>591</width>
-     <height>421</height>
-    </rect>
-   </property>
-   <column>
-    <property name="text">
-     <string>Brand</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Device</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>OS Version</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Owner</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Comments</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Not compatible with</string>
-    </property>
-   </column>
-  </widget>
-  <widget class="QLabel" name="Title_2">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>191</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Devices</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="addDevice">
-   <property name="geometry">
-    <rect>
-     <x>640</x>
-     <y>300</y>
-     <width>90</width>
-     <height>23</height>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>800</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius : 50; border: 2 px solid black; background-color : #414BB2; color: white</string>
+    <string notr="true">background-color: #FFFFFF</string>
    </property>
-   <property name="text">
-    <string>Add</string>
-   </property>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>941</width>
+      <height>561</height>
+     </rect>
+    </property>
+    <column>
+     <property name="text">
+      <string>Brand</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Device</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>OS Version</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Owner</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Comments</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Not compatible with</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="add_device_button">
+    <property name="geometry">
+     <rect>
+      <x>980</x>
+      <y>530</y>
+      <width>90</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius : 50; border: 2 px solid black; background-color : #414BB2; color: white</string>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="title">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Devices</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

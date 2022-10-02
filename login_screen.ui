@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>Dialog</class>
+    <widget class="QDialog" name="Dialog">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1200</width>
+                <height>800</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>Dialog</string>
+        </property>
+        <widget class="QWidget" name="login_screen" native="true">
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>1201</width>
+                    <height>801</height>
+                </rect>
+            </property>
+            <property name="styleSheet">
+                <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+            <widget class="QWidget" name="verticalLayoutWidget">
+                <property name="geometry">
+                    <rect>
+                        <x>440</x>
+                        <y>220</y>
+                        <width>321</width>
+                        <height>481</height>
+                    </rect>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout">
+                    <item>
+                        <widget class="QLineEdit" name="login_input">
+                            <property name="minimumSize">
+                                <size>
+                                    <width>0</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <pointsize>10</pointsize>
+                                </font>
+                            </property>
+                            <property name="styleSheet">
+                                <string notr="true">border-radius : 7; border: 2px solid #D1D1D1</string>
+                            </property>
+                            <property name="text">
+                                <string>Login</string>
+                            </property>
+                            <property name="frame">
+                                <bool>false</bool>
+                            </property>
+                            <property name="placeholderText">
+                                <string>Device</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QLineEdit" name="password_input">
+                            <property name="minimumSize">
+                                <size>
+                                    <width>0</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <pointsize>10</pointsize>
+                                </font>
+                            </property>
+                            <property name="styleSheet">
+                                <string notr="true">border-radius : 7; border: 2px solid #D1D1D1</string>
+                            </property>
+                            <property name="text">
+                                <string>Password</string>
+                            </property>
+                            <property name="placeholderText">
+                                <string>Device</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="login_button">
+                            <property name="sizePolicy">
+                                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>0</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <pointsize>10</pointsize>
+                                </font>
+                            </property>
+                            <property name="styleSheet">
+                                <string notr="true">border-radius : 15; border: 2 px solid black; background-color :
+                                    #414BB2; color: white
+                                </string>
+                            </property>
+                            <property name="text">
+                                <string>Log In</string>
+                            </property>
+                        </widget>
+                    </item>
+                </layout>
+            </widget>
+            <widget class="QLabel" name="title">
+                <property name="geometry">
+                    <rect>
+                        <x>330</x>
+                        <y>100</y>
+                        <width>521</width>
+                        <height>91</height>
+                    </rect>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="font">
+                    <font>
+                        <pointsize>36</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                    </font>
+                </property>
+                <property name="text">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot;
+                        font-size:28pt;&quot;&gt;Device Inventory&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+                    </string>
+                </property>
+            </widget>
+        </widget>
+    </widget>
+    <resources/>
+    <connections/>
+</ui>
