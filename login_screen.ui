@@ -18,8 +18,8 @@
                 <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1201</width>
-                    <height>801</height>
+                    <width>1200</width>
+                    <height>800</height>
                 </rect>
             </property>
             <property name="styleSheet">
@@ -52,13 +52,13 @@
                                 <string notr="true">border-radius : 7; border: 2px solid #D1D1D1</string>
                             </property>
                             <property name="text">
-                                <string>Login</string>
+                                <string/>
                             </property>
                             <property name="frame">
                                 <bool>false</bool>
                             </property>
                             <property name="placeholderText">
-                                <string>Device</string>
+                                <string>Login</string>
                             </property>
                         </widget>
                     </item>
@@ -79,10 +79,10 @@
                                 <string notr="true">border-radius : 7; border: 2px solid #D1D1D1</string>
                             </property>
                             <property name="text">
-                                <string>Password</string>
+                                <string/>
                             </property>
                             <property name="placeholderText">
-                                <string>Device</string>
+                                <string>Password</string>
                             </property>
                         </widget>
                     </item>

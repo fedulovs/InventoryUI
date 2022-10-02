@@ -22,6 +22,7 @@ class LoginWindow(QDialog):
         widget.setFixedHeight(800)
         widget.setFixedWidth(1200)
         widget.setCurrentIndex(widget.currentIndex() + 1)
+        device['owner'] = self.login_input.text()
 
 
 class MainWindow(QDialog):
@@ -30,9 +31,6 @@ class MainWindow(QDialog):
         loadUi("devices.ui", self)
 
         self.setWindowTitle("Device inventory")
-
-        # setting the geometry of main window
-        self.setGeometry(0, 0, 900, 2000)
 
         # Add button settings
         self.add_device_button.setGeometry(200, 150, 100, 100)
@@ -185,10 +183,7 @@ class DeviceDialog4(QDialog):
 
     def open_confirmation_screen(self):
         print("Confirmation button clicked")
-
         device['not_compatible_with'] = self.dropdown.currentText()
-        device['owner'] = 'Sergey'
-
         self.request_add_device()
 
         # print device fields
