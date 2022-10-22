@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>Dialog</class>
+    <widget class="QDialog" name="Dialog">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>412</width>
+                <height>504</height>
+            </rect>
+        </property>
+        <property name="font">
+            <font>
+                <pointsize>12</pointsize>
+            </font>
+        </property>
+        <property name="windowTitle">
+            <string>Dialog</string>
+        </property>
+        <widget class="QWidget" name="widget" native="true">
+            <property name="geometry">
+                <rect>
+                    <x>-1</x>
+                    <y>-1</y>
+                    <width>421</width>
+                    <height>511</height>
+                </rect>
+            </property>
+            <property name="styleSheet">
+                <string notr="true">background-color: white</string>
+            </property>
+            <widget class="QLabel" name="confirm_text">
+                <property name="geometry">
+                    <rect>
+                        <x>26</x>
+                        <y>20</y>
+                        <width>361</width>
+                        <height>371</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string/>
+                </property>
+            </widget>
+            <widget class="QWidget" name="horizontalLayoutWidget">
+                <property name="geometry">
+                    <rect>
+                        <x>30</x>
+                        <y>410</y>
+                        <width>361</width>
+                        <height>80</height>
+                    </rect>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                    <item>
+                        <widget class="QPushButton" name="confirm_button">
+                            <property name="sizePolicy">
+                                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>0</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <pointsize>10</pointsize>
+                                </font>
+                            </property>
+                            <property name="styleSheet">
+                                <string notr="true">border-radius : 15; border: 2 px solid black; background-color:
+                                    #414BB2; color: white;
+
+                                    pressed ({
+                                    border: 4px solid #090;
+                                    border-radius: 5px
+                                    })
+                                </string>
+                            </property>
+                            <property name="text">
+                                <string>Confirm</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="back_button">
+                            <property name="sizePolicy">
+                                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>0</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <pointsize>10</pointsize>
+                                </font>
+                            </property>
+                            <property name="styleSheet">
+                                <string notr="true">border-radius : 15; border: 2 px solid black; background-color:
+                                    #414BB2; color: white;
+
+                                    pressed ({
+                                    border: 4px solid #090;
+                                    border-radius: 5px
+                                    })
+                                </string>
+                            </property>
+                            <property name="text">
+                                <string>Go back</string>
+                            </property>
+                        </widget>
+                    </item>
+                </layout>
+            </widget>
+        </widget>
+    </widget>
+    <resources/>
+    <connections/>
+</ui>

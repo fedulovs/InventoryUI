@@ -14,15 +14,23 @@ class LoginWindow(QDialog):
         loadUi("login_screen.ui", self)
 
         self.login_button.clicked.connect(lambda: self.open_devices_list())
+        self.password_input.setEchoMode(QtWidgets.QLineEdit.Password)
 
     def open_devices_list(self):
         print("Login button clicked")
-        main_window = MainWindow()
-        widget.addWidget(main_window)
-        widget.setFixedHeight(800)
-        widget.setFixedWidth(1200)
-        widget.setCurrentIndex(widget.currentIndex() + 1)
-        device['owner'] = self.login_input.text()
+
+        user = self.login_input.text()
+        password = self.password_input.text()
+
+        if len(user) == 0 or len(password) == 0:
+            self.error_text.setText("Fields should not be empty")
+        else:
+            main_window = MainWindow()
+            widget.addWidget(main_window)
+            widget.setFixedHeight(800)
+            widget.setFixedWidth(1200)
+            widget.setCurrentIndex(widget.currentIndex() + 1)
+            device['owner'] = self.login_input.text()
 
 
 class MainWindow(QDialog):
@@ -45,6 +53,22 @@ class MainWindow(QDialog):
         self.tableWidget.setColumnWidth(4, 200)
         self.tableWidget.setColumnWidth(5, 190)
         self.load_data()
+
+        self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
+
+    def on_selection_changed(self, selected):
+        for index in selected.indexes():
+            print(f'selected cell location row is {index.row()}, Column is {index.column()}')
+            url = f"http://127.0.0.1:8000/get-item/{index.row() + 1}"
+            res = requests.get(url)
+            chosen_device = res.json()
+            print(f'device is {chosen_device}')
+            device["device"] = chosen_device["device"]
+            device["owner"] = chosen_device["owner"]
+            device["os_version"] = chosen_device["os_version"]
+            device["comments"] = chosen_device["comments"]
+            print(device)
+            self.open_device_info()
 
     def load_data(self):
         url = "http://127.0.0.1:8000/get-items"
@@ -69,6 +93,12 @@ class MainWindow(QDialog):
         widget.setFixedWidth(400)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
+    def open_device_info(self):
+        print("Open Device info button clicked")
+        device_info = DeviceInfo()
+        widget.addWidget(device_info)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
 
 class DeviceDialog1(QDialog):
     def __init__(self):
@@ -76,8 +106,6 @@ class DeviceDialog1(QDialog):
         loadUi("add_device1.ui", self)
 
         # Back button
-        self.backButton.setStyleSheet(
-            "border-radius : 50; border: 2 px solid black; color: black")
         self.backButton.setGeometry(10, 10, 100, 100)
         self.backButton.clicked.connect(lambda: self.go_back())
 
@@ -183,14 +211,14 @@ class DeviceDialog4(QDialog):
 
     def open_confirmation_screen(self):
         print("Confirmation button clicked")
+
+        confirmation_screen = ConfirmationDialogue()
+        widget.addWidget(confirmation_screen)
+        widget.setFixedHeight(501)
+        widget.setFixedWidth(411)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
         device['not_compatible_with'] = self.dropdown.currentText()
-        self.request_add_device()
-
-        # print device fields
-        for key in device.keys():
-            print(device.get(key))
-
-        print(device)
 
     def go_back(self):
         print("Going back to screen 3")
@@ -199,6 +227,31 @@ class DeviceDialog4(QDialog):
         widget.setFixedHeight(501)
         widget.setFixedWidth(411)
         widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class ConfirmationDialogue(QDialog):
+
+    def __init__(self):
+        super(ConfirmationDialogue, self).__init__()
+        loadUi("add_device_confirmation.ui", self)
+
+        text = ''
+
+        for key, value in device.items():
+            text += ("{}: {}".format(key, value) + '\n')
+
+        self.confirm_text.setText(f'Are you sure you want to add this \ndevice? \n\n{text}')
+
+        self.confirm_button.clicked.connect(lambda: self.add_device())
+        self.back_button.clicked.connect(lambda: self.go_back())
+
+    def add_device(self):
+        self.request_add_device()
+        # print device fields
+        for key in device.keys():
+            print(device.get(key))
+
+        print(device)
 
     def request_add_device(self):
         # {
@@ -213,6 +266,36 @@ class DeviceDialog4(QDialog):
         url = "http://127.0.0.1:8000/create-item"
         res = requests.post(url, json=device)
         print(res.json())
+
+        self.open_devices_list()
+
+    def open_devices_list(self):
+        main_window = MainWindow()
+        widget.addWidget(main_window)
+        widget.setFixedHeight(800)
+        widget.setFixedWidth(1200)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    def go_back(self):
+        print("Going back to screen 4")
+        add_device4 = DeviceDialog4()
+        widget.addWidget(add_device4)
+        widget.setFixedHeight(501)
+        widget.setFixedWidth(411)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class DeviceInfo(QDialog):
+    def __init__(self):
+        super(DeviceInfo, self).__init__()
+        loadUi("device_info.ui", self)
+        widget.setFixedHeight(850)
+        widget.setFixedWidth(1120)
+
+        self.device_name.setText(device["device"])
+        self.owner.setText(f'Owner: {device["owner"]}')
+        self.os_version.setText(f'OS version: {device["os_version"]}')
+        self.comments.setText(f'Comments:\n{device["comments"]}')
 
 
 app = QApplication(sys.argv)
