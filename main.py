@@ -2,6 +2,7 @@ import sys
 
 import requests
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QDialog, QApplication
 from PyQt5.uic import loadUi
 
@@ -289,13 +290,24 @@ class DeviceInfo(QDialog):
     def __init__(self):
         super(DeviceInfo, self).__init__()
         loadUi("device_info.ui", self)
-        widget.setFixedHeight(850)
+        widget.setFixedHeight(430)
         widget.setFixedWidth(1120)
 
+        self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
+        self.back_button.clicked.connect(lambda: self.go_back())
+
         self.device_name.setText(device["device"])
-        self.owner.setText(f'Owner: {device["owner"]}')
-        self.os_version.setText(f'OS version: {device["os_version"]}')
-        self.comments.setText(f'Comments:\n{device["comments"]}')
+        self.owner.setText(device["owner"])
+        self.os_version.setText(device["os_version"])
+        self.comments.setText(device["comments"])
+
+    def go_back(self):
+        print("Going back to main window")
+        mainwindow = MainWindow()
+        widget.addWidget(mainwindow)
+        widget.setFixedHeight(850)
+        widget.setFixedWidth(1120)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 app = QApplication(sys.argv)
