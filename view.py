@@ -15,12 +15,11 @@ class LoginWindow(QDialog):
         super(LoginWindow, self).__init__()
         loadUi("user_cloud.ui", self)
 
-        # populate user picker with user list
+        # Populate user picker with user list
         for user in users:
             self.user_picker.addItem(user)
 
         self.login_button.clicked.connect(lambda: self.open_devices_list())
-        # self.password_input.setEchoMode(QtWidgets.QLineEdit.Password)
 
     def open_devices_list(self):
         print("Login button clicked")
