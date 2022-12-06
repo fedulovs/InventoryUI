@@ -7,31 +7,33 @@ from PyQt5.QtWidgets import QDialog, QApplication
 from PyQt5.uic import loadUi
 
 device = {}
+users = ['Sergey', 'Sam', 'Cabinet']
 
 
 class LoginWindow(QDialog):
     def __init__(self):
         super(LoginWindow, self).__init__()
-        loadUi("login_screen.ui", self)
+        loadUi("user_cloud.ui", self)
+
+        # populate user picker with user list
+        for user in users:
+            self.user_picker.addItem(user)
 
         self.login_button.clicked.connect(lambda: self.open_devices_list())
-        self.password_input.setEchoMode(QtWidgets.QLineEdit.Password)
+        # self.password_input.setEchoMode(QtWidgets.QLineEdit.Password)
 
     def open_devices_list(self):
         print("Login button clicked")
-
-        user = self.login_input.text()
-        password = self.password_input.text()
-
-        if len(user) == 0 or len(password) == 0:
-            self.error_text.setText("Fields should not be empty")
+        user = self.user_picker.currentText()
+        if len(user) == 0:
+            self.error_text.setText("You should pick a user")
         else:
             main_window = MainWindow()
             widget.addWidget(main_window)
             widget.setFixedHeight(800)
             widget.setFixedWidth(1200)
             widget.setCurrentIndex(widget.currentIndex() + 1)
-            device['owner'] = self.login_input.text()
+            device['owner'] = user
 
 
 class MainWindow(QDialog):
