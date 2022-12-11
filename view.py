@@ -15,11 +15,25 @@ class LoginWindow(QDialog):
         super(LoginWindow, self).__init__()
         loadUi("user_cloud.ui", self)
 
-        # Populate user picker with user list
-        for user in users:
-            self.user_picker.addItem(user)
+        # Add user button
+        self.add_new_user_button.clicked.connect(lambda: self.add_new_user())
 
+        # Populate user picker with user list
+        with open('users.txt', 'r') as f:
+            for line in f:
+                self.user_picker.addItem(line.strip())
+            f.close()
+
+        # Open device list button
         self.login_button.clicked.connect(lambda: self.open_devices_list())
+
+    def add_new_user(self):
+        print("Add new user button clicked")
+        create_user_window = CreateUserWindow()
+        widget.addWidget(create_user_window)
+        widget.setFixedHeight(800)
+        widget.setFixedWidth(1200)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def open_devices_list(self):
         print("Login button clicked")
@@ -33,6 +47,36 @@ class LoginWindow(QDialog):
             widget.setFixedWidth(1200)
             widget.setCurrentIndex(widget.currentIndex() + 1)
             device['owner'] = user
+
+
+class CreateUserWindow(QDialog):
+    def __init__(self):
+        super(CreateUserWindow, self).__init__()
+        loadUi("create_user.ui", self)
+
+        self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
+
+        self.create_new_user_button.clicked.connect(lambda: self.add_new_user())
+        self.back_button.clicked.connect(lambda: self.go_back())
+
+    def add_new_user(self):
+        if len(self.user_name_input.text()) == 0:
+            self.error_text.setText("Name should not be empty")
+        else:
+            # users.append(self.user_name_input.text())
+            with open('users.txt', 'a') as f:
+                f.write('\n')
+                f.write(''.join(self.user_name_input.text()))
+                f.close()
+            print(users)
+
+    def go_back(self):
+        print("Going back to login window")
+        login_window = LoginWindow()
+        widget.addWidget(login_window)
+        widget.setFixedHeight(850)
+        widget.setFixedWidth(1120)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 class MainWindow(QDialog):
@@ -301,6 +345,15 @@ class DeviceInfo(QDialog):
         self.owner.setText(device["owner"])
         self.os_version.setText(device["os_version"])
         self.comments.setText(device["comments"])
+
+    def take_device(self):
+        print("Add new user button clicked")
+        # TODO: change device owner
+        # TODO: open cabinet
+
+    def change_device_info(self):
+        print("Add new user button clicked")
+        # TODO: open device fields
 
     def go_back(self):
         print("Going back to main window")
