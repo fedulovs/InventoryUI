@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QDialog, QApplication
 from PyQt5.uic import loadUi
 
 device = {}
-users = ['Sergey', 'Sam', 'Cabinet']
+user_name = ''
 
 
 class LoginWindow(QDialog):
@@ -19,7 +19,7 @@ class LoginWindow(QDialog):
         self.add_new_user_button.clicked.connect(lambda: self.add_new_user())
 
         # Populate user picker with user list
-        with open('users.txt', 'r') as f:
+        with open('data/users.txt', 'r') as f:
             for line in f:
                 self.user_picker.addItem(line.strip())
             f.close()
@@ -38,6 +38,8 @@ class LoginWindow(QDialog):
     def open_devices_list(self):
         print("Login button clicked")
         user = self.user_picker.currentText()
+        global user_name
+        user_name = user
         if len(user) == 0:
             self.error_text.setText("You should pick a user")
         else:
@@ -63,32 +65,32 @@ class CreateUserWindow(QDialog):
         if len(self.user_name_input.text()) == 0:
             self.error_text.setText("Name should not be empty")
         else:
-            # users.append(self.user_name_input.text())
-            with open('users.txt', 'a') as f:
+            with open('data/users.txt', 'a') as f:
                 f.write('\n')
                 f.write(''.join(self.user_name_input.text()))
                 f.close()
-            print(users)
 
     def go_back(self):
         print("Going back to login window")
         login_window = LoginWindow()
         widget.addWidget(login_window)
-        widget.setFixedHeight(850)
-        widget.setFixedWidth(1120)
+        widget.setFixedHeight(800)
+        widget.setFixedWidth(1200)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 class MainWindow(QDialog):
     def __init__(self):
         super(MainWindow, self).__init__()
-        loadUi("devices.ui", self)
+        loadUi("devices_screen.ui", self)
+
+        self.user_name.setText(user_name)
 
         self.setWindowTitle("Device inventory")
+        self.profile_button.setIcon(QIcon('icons/user.svg'))
 
         # Add button settings
         self.add_device_button.setGeometry(200, 150, 100, 100)
-        self.add_device_button.move(1000, 600)
         self.add_device_button.clicked.connect(lambda: self.add_device())
 
         self.tableWidget.resize(950, 700)
@@ -101,6 +103,7 @@ class MainWindow(QDialog):
         self.load_data()
 
         self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
+
 
     def on_selection_changed(self, selected):
         for index in selected.indexes():
@@ -172,8 +175,8 @@ class DeviceDialog1(QDialog):
         print("Going back to main window")
         mainwindow = MainWindow()
         widget.addWidget(mainwindow)
-        widget.setFixedHeight(850)
-        widget.setFixedWidth(1120)
+        widget.setFixedHeight(800)
+        widget.setFixedWidth(1200)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
@@ -359,8 +362,8 @@ class DeviceInfo(QDialog):
         print("Going back to main window")
         mainwindow = MainWindow()
         widget.addWidget(mainwindow)
-        widget.setFixedHeight(850)
-        widget.setFixedWidth(1120)
+        widget.setFixedHeight(800)
+        widget.setFixedWidth(1200)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
