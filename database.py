@@ -22,17 +22,29 @@ c = conn.cursor()
 #             )""")
 
 
-def get_all_devices(device_id):
-    c.execute("SELECT * FROM devices WHERE device_id = :device_id")
-    c.fetchone()
-    # c.fetchall()
+def get_all_devices():
+    with conn:
+        c.execute("SELECT * FROM devices")
+        devices = c.fetchall()
+
+        for device in devices:
+            print(device)
 
 
-def get_device_by_id():
-    pass
+# get_all_devices()
 
+
+def get_device_by_name(device_name):
+    c.execute("SELECT * FROM devices WHERE device_name LIKE?", (device_name,))
+    device = c.fetchone()
+    print(device)
+
+
+get_device_by_name("iphone 8")
 
 device_1 = Device('iphone 14', 'Apple', 'iOS', '15', 'cpu', 'cabinet', '45254435', 'DDDS123432', 'no comments', '12')
+device_2 = Device('iphone 8', 'Apple', 'iOS', '13', 'cpu', 'cabinet', '1234556', 'FDDS123432', 'no comments',
+                  'Screen was replaced')
 
 
 def add_device(device):
@@ -53,7 +65,7 @@ def add_device(device):
                        'identifier': device.identifier, 'comment': device.comment})
 
 
-add_device(device_1)
+# add_device(device_2)
 
 
 def change_owner(device):
@@ -63,5 +75,12 @@ def change_owner(device):
 def update_device(device):
     pass
 
+
+def delete_device(serial_number):
+    with conn:
+        c.execute("DELETE FROM devices WHERE serial_number=?", (serial_number,))
+
+
+# delete_device("FDDS123432")
 
 conn.close()
