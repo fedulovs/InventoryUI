@@ -13,7 +13,7 @@ user_name = ''
 class LoginWindow(QDialog):
     def __init__(self):
         super(LoginWindow, self).__init__()
-        loadUi("user_cloud.ui", self)
+        loadUi("layouts/user_cloud.ui", self)
 
         # Add user button
         self.add_new_user_button.clicked.connect(lambda: self.add_new_user())
@@ -54,7 +54,7 @@ class LoginWindow(QDialog):
 class CreateUserWindow(QDialog):
     def __init__(self):
         super(CreateUserWindow, self).__init__()
-        loadUi("create_user.ui", self)
+        loadUi("layouts/create_user.ui", self)
 
         self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
 
@@ -82,7 +82,7 @@ class CreateUserWindow(QDialog):
 class MainWindow(QDialog):
     def __init__(self):
         super(MainWindow, self).__init__()
-        loadUi("devices_screen.ui", self)
+        loadUi("layouts/devices_screen.ui", self)
 
         self.user_name.setText(user_name)
 
@@ -103,7 +103,6 @@ class MainWindow(QDialog):
         self.load_data()
 
         self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
-
 
     def on_selection_changed(self, selected):
         for index in selected.indexes():
@@ -152,7 +151,7 @@ class MainWindow(QDialog):
 class DeviceDialog1(QDialog):
     def __init__(self):
         super(DeviceDialog1, self).__init__()
-        loadUi("add_device1.ui", self)
+        loadUi("layouts/add_device1.ui", self)
 
         # Back button
         self.backButton.setGeometry(10, 10, 100, 100)
@@ -183,7 +182,7 @@ class DeviceDialog1(QDialog):
 class DeviceDialog2(QDialog):
     def __init__(self):
         super(DeviceDialog2, self).__init__()
-        loadUi("add_device2.ui", self)
+        loadUi("layouts/add_device2.ui", self)
 
         # Next button
         self.nextButton.clicked.connect(lambda: self.open_comments_input())
@@ -213,7 +212,7 @@ class DeviceDialog2(QDialog):
 class DeviceDialog3(QDialog):
     def __init__(self):
         super(DeviceDialog3, self).__init__()
-        loadUi("add_device3.ui", self)
+        loadUi("layouts/add_device3.ui", self)
 
         # Next button
         self.nextButton.clicked.connect(lambda: self.open_not_compatible_input())
@@ -243,7 +242,7 @@ class DeviceDialog3(QDialog):
 class DeviceDialog4(QDialog):
     def __init__(self):
         super(DeviceDialog4, self).__init__()
-        loadUi("add_device4.ui", self)
+        loadUi("layouts/add_device4.ui", self)
 
         self.dropdown.addItem('-')
         self.dropdown.addItem('Guitar Tuna')
@@ -282,7 +281,7 @@ class ConfirmationDialogue(QDialog):
 
     def __init__(self):
         super(ConfirmationDialogue, self).__init__()
-        loadUi("add_device_confirmation.ui", self)
+        loadUi("layouts/add_device_confirmation.ui", self)
 
         text = ''
 
@@ -337,7 +336,7 @@ class ConfirmationDialogue(QDialog):
 class DeviceInfo(QDialog):
     def __init__(self):
         super(DeviceInfo, self).__init__()
-        loadUi("device_info.ui", self)
+        loadUi("layouts/device_info.ui", self)
         widget.setFixedHeight(430)
         widget.setFixedWidth(1120)
 
