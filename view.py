@@ -1,13 +1,16 @@
 import sys
 
-import requests
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QDialog, QApplication
+from PyQt5.QtWidgets import QDialog, QApplication, QHeaderView
 from PyQt5.uic import loadUi
 
+import database as db
+from model import Device
+
 device = {}
-user_name = ''
+new_device = {}
+row = None
 
 
 class LoginWindow(QDialog):
@@ -48,7 +51,7 @@ class LoginWindow(QDialog):
             widget.setFixedHeight(800)
             widget.setFixedWidth(1200)
             widget.setCurrentIndex(widget.currentIndex() + 1)
-            device['owner'] = user
+            new_device['owner'] = user
 
 
 class CreateUserWindow(QDialog):
@@ -86,20 +89,15 @@ class MainWindow(QDialog):
 
         self.user_name.setText(user_name)
 
-        self.setWindowTitle("Device inventory")
         self.profile_button.setIcon(QIcon('icons/user.svg'))
 
         # Add button settings
         self.add_device_button.setGeometry(200, 150, 100, 100)
         self.add_device_button.clicked.connect(lambda: self.add_device())
 
-        self.tableWidget.resize(950, 700)
-        self.tableWidget.setColumnWidth(0, 100)
-        self.tableWidget.setColumnWidth(1, 150)
-        self.tableWidget.setColumnWidth(2, 120)
-        self.tableWidget.setColumnWidth(3, 100)
-        self.tableWidget.setColumnWidth(4, 200)
-        self.tableWidget.setColumnWidth(5, 190)
+        # self.tableWidget.setColumnWidth(5, 250)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(5, QHeaderView.Stretch)
+
         self.load_data()
 
         self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
@@ -107,30 +105,35 @@ class MainWindow(QDialog):
     def on_selection_changed(self, selected):
         for index in selected.indexes():
             print(f'selected cell location row is {index.row()}, Column is {index.column()}')
-            url = f"http://127.0.0.1:8000/get-item/{index.row() + 1}"
-            res = requests.get(url)
-            chosen_device = res.json()
-            print(f'device is {chosen_device}')
-            device["device"] = chosen_device["device"]
-            device["owner"] = chosen_device["owner"]
-            device["os_version"] = chosen_device["os_version"]
-            device["comments"] = chosen_device["comments"]
-            print(device)
+            global row
+            global device
+            row = index.row() + 1
+            device = db.get_device_by_row(index.row() + 1)
             self.open_device_info()
+            # TODO Think how to assign parameters to device
+
+    # device['device_name'] = row[0] +
+    # device['brand'] = row[1] +
+    # device['os_name'] = row[2] +
+    # device['os_version'] = row[3] +
+    # device['cpu'] = row[4]
+    # device['owner'] = row[5]
+    # device['snipe_it'] = row[6] +
+    # device['serial_number'] = row[7] +
+    # device['identifier'] = row[8] +
+    # device['comment'] = row[9]
 
     def load_data(self):
-        url = "http://127.0.0.1:8000/get-items"
-        res = requests.get(url)
-        devices = res.json()
+        devices = db.get_all_devices()
         row = 0
         self.tableWidget.setRowCount(len(devices))
-        for device in devices:
-            self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(device["brand"]))
-            self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(device["device"]))
-            self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(device["os_version"]))
-            self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(device["owner"]))
-            self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(device["comments"]))
-            self.tableWidget.setItem(row, 5, QtWidgets.QTableWidgetItem(device["not_compatible_with"]))
+        for item in devices:
+            self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(item.device_name))
+            self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(item.brand))
+            self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(f"{item.os_name} {item.os_version}"))
+            self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(item.cpu))
+            self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(item.owner))
+            self.tableWidget.setItem(row, 5, QtWidgets.QTableWidgetItem(item.comment))
             row = row + 1
 
     def add_device(self):
@@ -154,21 +157,21 @@ class DeviceDialog1(QDialog):
         loadUi("layouts/add_device1.ui", self)
 
         # Back button
-        self.backButton.setGeometry(10, 10, 100, 100)
+        self.backButton.setIcon(QIcon('icons/arrow-left.svg'))
         self.backButton.clicked.connect(lambda: self.go_back())
 
         # Next button
         self.nextButton.clicked.connect(lambda: self.open_os_input())
 
     def open_os_input(self):
-        print("Open OS button clicked")
+        print("Open OS info button clicked")
         add_device2 = DeviceDialog2()
         widget.addWidget(add_device2)
         widget.setFixedHeight(500)
         widget.setFixedWidth(400)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-        device['brand'] = self.brandInput.text()
-        device['device'] = self.deviceInput.text()
+        new_device['device_name'] = self.device_input.text()
+        new_device['brand'] = self.brand_input.text()
 
     def go_back(self):
         print("Going back to main window")
@@ -184,21 +187,27 @@ class DeviceDialog2(QDialog):
         super(DeviceDialog2, self).__init__()
         loadUi("layouts/add_device2.ui", self)
 
+        self.os_dropdown.addItem('Android')
+        self.os_dropdown.addItem('iOS')
+        self.os_dropdown.addItem('Windows')
+        self.os_dropdown.addItem('macOS')
+
         # Next button
-        self.nextButton.clicked.connect(lambda: self.open_comments_input())
+        self.nextButton.clicked.connect(lambda: self.open_identifiers_input())
 
         # Back button
-        self.backButton.setGeometry(10, 10, 100, 100)
+        self.backButton.setIcon(QIcon('icons/arrow-left.svg'))
         self.backButton.clicked.connect(lambda: self.go_back())
 
-    def open_comments_input(self):
-        print("Open Comments button clicked")
+    def open_identifiers_input(self):
+        print("Open identifiers button clicked")
         add_device3 = DeviceDialog3()
         widget.addWidget(add_device3)
         widget.setFixedHeight(501)
         widget.setFixedWidth(411)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-        device['os_version'] = self.osInput.text()
+        new_device['os_name'] = self.os_dropdown.currentText()
+        new_device['os_version'] = self.os_version_input.text()
 
     def go_back(self):
         print("Going back to screen 1")
@@ -218,17 +227,20 @@ class DeviceDialog3(QDialog):
         self.nextButton.clicked.connect(lambda: self.open_not_compatible_input())
 
         # Back button
-        self.backButton.setGeometry(10, 10, 100, 100)
+        self.backButton.setIcon(QIcon('icons/arrow-left.svg'))
         self.backButton.clicked.connect(lambda: self.go_back())
 
     def open_not_compatible_input(self):
-        print("Open Not compatible button clicked")
+        print("Open comments button clicked")
         add_device4 = DeviceDialog4()
         widget.addWidget(add_device4)
         widget.setFixedHeight(501)
         widget.setFixedWidth(411)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-        device['comments'] = self.commentsInput.toPlainText()
+
+        new_device['snipe_it'] = self.snipe_it_input.text()
+        new_device['serial_number'] = self.serial_number_input.text()
+        new_device['identifier'] = self.identifier_input.text()
 
     def go_back(self):
         print("Going back to screen 2")
@@ -244,34 +256,93 @@ class DeviceDialog4(QDialog):
         super(DeviceDialog4, self).__init__()
         loadUi("layouts/add_device4.ui", self)
 
-        self.dropdown.addItem('-')
-        self.dropdown.addItem('Guitar Tuna')
-        self.dropdown.addItem('Yousician')
-        self.dropdown.addItem('Campfire')
-        self.dropdown.addItem('Lessons')
-
-        # Add device button
-        self.nextButton.clicked.connect(lambda: self.open_confirmation_screen())
+        # Next button
+        self.nextButton.clicked.connect(lambda: self.open_cpu_input())
 
         # Back button
-        self.backButton.setGeometry(10, 10, 100, 100)
+        self.backButton.setIcon(QIcon('icons/arrow-left.svg'))
         self.backButton.clicked.connect(lambda: self.go_back())
 
-    def open_confirmation_screen(self):
-        print("Confirmation button clicked")
-
-        confirmation_screen = ConfirmationDialogue()
-        widget.addWidget(confirmation_screen)
+    def open_cpu_input(self):
+        print("Open cpu button clicked")
+        add_device5 = DeviceDialog5()
+        widget.addWidget(add_device5)
         widget.setFixedHeight(501)
         widget.setFixedWidth(411)
         widget.setCurrentIndex(widget.currentIndex() + 1)
-
-        device['not_compatible_with'] = self.dropdown.currentText()
+        new_device['comment'] = self.comments_input.toPlainText()
+        print(new_device)
 
     def go_back(self):
         print("Going back to screen 3")
         add_device3 = DeviceDialog3()
         widget.addWidget(add_device3)
+        widget.setFixedHeight(501)
+        widget.setFixedWidth(411)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class DeviceDialog5(QDialog):
+    def __init__(self):
+        super(DeviceDialog5, self).__init__()
+        loadUi("layouts/add_device5.ui", self)
+
+        # Next button
+        self.nextButton.clicked.connect(lambda: self.open_confirmation_screen())
+
+        # Back button
+        self.backButton.setIcon(QIcon('icons/arrow-left.svg'))
+        self.backButton.clicked.connect(lambda: self.go_back())
+
+    def open_confirmation_screen(self):
+        print("Open not compatible with input")
+        confirmation_screen = ConfirmationDialogue()
+        widget.addWidget(confirmation_screen)
+        widget.setFixedHeight(501)
+        widget.setFixedWidth(411)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+        new_device['cpu'] = self.cpu_input.text()
+
+    def go_back(self):
+        print("Going back to screen 4")
+        add_device4 = DeviceDialog4()
+        widget.addWidget(add_device4)
+        widget.setFixedHeight(501)
+        widget.setFixedWidth(411)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class DeviceDialog6(QDialog):
+    def __init__(self):
+        super(DeviceDialog6, self).__init__()
+        loadUi("layouts/add_device6.ui", self)
+
+        self.dropdown.addItem('-')
+        self.dropdown.addItem('Guitar Tuna')
+        self.dropdown.addItem('Yousician')
+        self.dropdown.addItem('Campfire')
+
+        # Add device button
+        self.nextButton.clicked.connect(lambda: self.open_confirmation_screen())
+
+        # Back button
+        self.backButton.setIcon(QIcon('icons/arrow-left.svg'))
+        self.backButton.clicked.connect(lambda: self.go_back())
+
+    def open_confirmation_screen(self):
+        print("Confirmation button clicked")
+        confirmation_screen = ConfirmationDialogue()
+        widget.addWidget(confirmation_screen)
+        widget.setFixedHeight(501)
+        widget.setFixedWidth(411)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+        new_device['not_compatible_with'] = self.dropdown.currentText()
+        print(new_device)
+
+    def go_back(self):
+        print("Going back to screen 5")
+        add_device5 = DeviceDialog5()
+        widget.addWidget(add_device5)
         widget.setFixedHeight(501)
         widget.setFixedWidth(411)
         widget.setCurrentIndex(widget.currentIndex() + 1)
@@ -285,7 +356,7 @@ class ConfirmationDialogue(QDialog):
 
         text = ''
 
-        for key, value in device.items():
+        for key, value in new_device.items():
             text += ("{}: {}".format(key, value) + '\n')
 
         self.confirm_text.setText(f'Are you sure you want to add this \ndevice? \n\n{text}')
@@ -294,27 +365,21 @@ class ConfirmationDialogue(QDialog):
         self.back_button.clicked.connect(lambda: self.go_back())
 
     def add_device(self):
-        self.request_add_device()
-        # print device fields
-        for key in device.keys():
-            print(device.get(key))
+        device_1 = Device('iphone 14', 'Apple', 'iOS', '15', 'cpu', 'cabinet', '45254435', 'DDDS123432', '1',
+                          'no comments')
 
-        print(device)
-
-    def request_add_device(self):
-        # {
-        #     "brand": "string",
-        #     "device": "string",
-        #     "owner": "string",
-        #     "os_version": "string",
-        #     "comments": "string",
-        #     "not_compatible_with": "string"
-        # }
-
-        url = "http://127.0.0.1:8000/create-item"
-        res = requests.post(url, json=device)
-        print(res.json())
-
+        device_object = Device(
+            device_name=new_device['device_name'],
+            brand=new_device['brand'],
+            os_name=new_device['os_name'],
+            os_version=new_device['os_version'],
+            cpu=new_device['cpu'],
+            owner=new_device['owner'],
+            snipe_it=new_device['snipe_it'],
+            serial_number=new_device['serial_number'],
+            identifier=new_device['identifier'],
+            comment=new_device['comment'])
+        db.add_device(device_object)
         self.open_devices_list()
 
     def open_devices_list(self):
@@ -343,10 +408,16 @@ class DeviceInfo(QDialog):
         self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
         self.back_button.clicked.connect(lambda: self.go_back())
 
-        self.device_name.setText(device["device"])
-        self.owner.setText(device["owner"])
-        self.os_version.setText(device["os_version"])
-        self.comments.setText(device["comments"])
+        db_device = db.get_device_by_row(row)
+
+        self.device_name.setText(db_device.device_name)
+        self.cpu.setText(db_device.cpu)
+        self.owner.setText(db_device.owner)
+        self.os_version.setText(f"{db_device.os_name} {db_device.os_version}")
+        self.snipe_it.setText(db_device.snipe_it)
+        self.serial_number.setText(db_device.serial_number)
+        self.identifier.setText(db_device.identifier)
+        self.comments.setText(db_device.comment)
 
     def take_device(self):
         print("Add new user button clicked")
@@ -374,6 +445,9 @@ widget.addWidget(login_window)
 
 widget.setFixedHeight(800)
 widget.setFixedWidth(1200)
+widget.setWindowTitle("Device inventory")
+widget.setWindowIcon(QIcon('icons/phone_iphone.svg'))
+
 widget.show()
 try:
     sys.exit(app.exec_())
