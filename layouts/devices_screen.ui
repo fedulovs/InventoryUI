@@ -71,6 +71,9 @@
                 <bold>true</bold>
                </font>
               </property>
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
               <property name="text">
                <string>Devices</string>
               </property>
@@ -81,6 +84,12 @@
          </item>
          <item alignment="Qt::AlignRight">
           <widget class="QFrame" name="frame_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -112,6 +121,12 @@
             </item>
             <item>
              <widget class="QLabel" name="user_name">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -124,6 +139,9 @@
                 <weight>75</weight>
                 <bold>true</bold>
                </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>user name</string>
