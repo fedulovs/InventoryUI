@@ -100,6 +100,9 @@ class MainWindow(QDialog):
         self.profile_button.setIcon(QIcon('icons/user.svg'))
 
         # OS filters
+        self.all_filter.setIcon(QIcon('icons/home1.svg'))
+        self.all_filter.setIconSize(QtCore.QSize(35, 35))
+
         self.android_filter.setIcon(QIcon('icons/android.svg'))
         self.android_filter.setIconSize(QtCore.QSize(35, 35))
 
@@ -112,12 +115,15 @@ class MainWindow(QDialog):
         self.mac_filter.setIcon(QIcon('icons/mac.svg'))
         self.mac_filter.setIconSize(QtCore.QSize(35, 35))
 
+        self.all_filter.clicked.connect(lambda: self.load_data(db.get_all_devices()))
         self.android_filter.clicked.connect(lambda: self.load_data(self.filter_devices("Android")))
         self.ios_filter.clicked.connect(lambda: self.load_data(self.filter_devices("iOS")))
         self.win_filter.clicked.connect(lambda: self.load_data(self.filter_devices("Windows")))
         self.mac_filter.clicked.connect(lambda: self.load_data(self.filter_devices("Mac")))
 
         # Add button settings
+        self.add_device_button.setIcon(QIcon('icons/plus2.svg'))
+        self.add_device_button.setIconSize(QtCore.QSize(50, 50))
         self.add_device_button.setGeometry(200, 150, 100, 100)
         self.add_device_button.clicked.connect(lambda: self.add_device())
 
