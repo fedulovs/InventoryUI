@@ -53,6 +53,23 @@ def get_all_devices():
         return device_list
 
 
+def get_devices_by_os(os):
+    with conn:
+        c.execute("SELECT * FROM devices WHERE os_name LIKE?", (os,))
+        devices = c.fetchall()
+
+        device_list = []
+
+        for row in devices:
+            device_obj = build_device_from_db(row)
+            device_list.append(device_obj)
+
+        return device_list
+
+
+# get_devices_by_os("Android")
+
+
 def get_device_by_name(device_name):
     c.execute("SELECT * FROM devices WHERE device_name LIKE?", (device_name,))
     device = c.fetchone()

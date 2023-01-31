@@ -1,7 +1,7 @@
 import os
 import sys
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QDialog, QApplication, QHeaderView
 from PyQt5.uic import loadUi
@@ -12,6 +12,7 @@ from model import Device
 device = {}
 new_device = {}
 row = None
+filtered_devices = []
 
 
 def resource_path(relative_path):
@@ -98,26 +99,48 @@ class MainWindow(QDialog):
 
         self.profile_button.setIcon(QIcon('icons/user.svg'))
 
+        # OS filters
+        self.all_filter.setIcon(QIcon('icons/home1.svg'))
+        self.all_filter.setIconSize(QtCore.QSize(35, 35))
+
+        self.android_filter.setIcon(QIcon('icons/android.svg'))
+        self.android_filter.setIconSize(QtCore.QSize(35, 35))
+
+        self.ios_filter.setIcon(QIcon('icons/ios.svg'))
+        self.ios_filter.setIconSize(QtCore.QSize(35, 35))
+
+        self.win_filter.setIcon(QIcon('icons/win2.svg'))
+        self.win_filter.setIconSize(QtCore.QSize(35, 35))
+
+        self.mac_filter.setIcon(QIcon('icons/mac.svg'))
+        self.mac_filter.setIconSize(QtCore.QSize(35, 35))
+
+        self.all_filter.clicked.connect(lambda: self.load_data(db.get_all_devices()))
+        self.android_filter.clicked.connect(lambda: self.load_data(self.filter_devices("Android")))
+        self.ios_filter.clicked.connect(lambda: self.load_data(self.filter_devices("iOS")))
+        self.win_filter.clicked.connect(lambda: self.load_data(self.filter_devices("Windows")))
+        self.mac_filter.clicked.connect(lambda: self.load_data(self.filter_devices("Mac")))
+
         # Add button settings
+        self.add_device_button.setIcon(QIcon('icons/plus2.svg'))
+        self.add_device_button.setIconSize(QtCore.QSize(50, 50))
         self.add_device_button.setGeometry(200, 150, 100, 100)
         self.add_device_button.clicked.connect(lambda: self.add_device())
 
-        # self.tableWidget.setColumnWidth(5, 250)
+        # Table settings
         self.tableWidget.horizontalHeader().setSectionResizeMode(5, QHeaderView.Stretch)
-
-        self.load_data()
-
         self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
+
+        self.load_data(db.get_all_devices())
 
     def on_selection_changed(self, selected):
         for index in selected.indexes():
             print(f'selected cell location row is {index.row()}, Column is {index.column()}')
             global row
-            global device
-            row = index.row() + 1
-            device = db.get_device_by_row(index.row() + 1)
+            # row = index.row() + 1
+            print(index.row())
+            row = index.row()
             self.open_device_info()
-            # TODO Think how to assign parameters to device
 
     # device['device_name'] = row[0] +
     # device['brand'] = row[1] +
@@ -130,8 +153,9 @@ class MainWindow(QDialog):
     # device['identifier'] = row[8] +
     # device['comment'] = row[9]
 
-    def load_data(self):
-        devices = db.get_all_devices()
+    def load_data(self, devices):
+        global filtered_devices
+        filtered_devices = devices
         row = 0
         self.tableWidget.setRowCount(len(devices))
         for item in devices:
@@ -142,6 +166,11 @@ class MainWindow(QDialog):
             self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(item.owner))
             self.tableWidget.setItem(row, 5, QtWidgets.QTableWidgetItem(item.comment))
             row = row + 1
+
+    def filter_devices(self, filter):
+        global filtered_devices
+        filtered_devices = db.get_devices_by_os(filter)
+        return filtered_devices
 
     def add_device(self):
         print("Open Device button clicked")
@@ -372,9 +401,6 @@ class ConfirmationDialogue(QDialog):
         self.back_button.clicked.connect(lambda: self.go_back())
 
     def add_device(self):
-        device_1 = Device('iphone 14', 'Apple', 'iOS', '15', 'cpu', 'cabinet', '45254435', 'DDDS123432', '1',
-                          'no comments')
-
         device_object = Device(
             device_name=new_device['device_name'],
             brand=new_device['brand'],
@@ -415,7 +441,7 @@ class DeviceInfo(QDialog):
         self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
         self.back_button.clicked.connect(lambda: self.go_back())
 
-        db_device = db.get_device_by_row(row)
+        db_device = filtered_devices[row]
 
         self.device_name.setText(db_device.device_name)
         self.cpu.setText(db_device.cpu)
@@ -427,12 +453,12 @@ class DeviceInfo(QDialog):
         self.comments.setText(db_device.comment)
 
     def take_device(self):
-        print("Add new user button clicked")
+        print("Take device button clicked")
         # TODO: change device owner
         # TODO: open cabinet
 
     def change_device_info(self):
-        print("Add new user button clicked")
+        print("Change device info button clicked")
         # TODO: open device fields
 
     def go_back(self):
