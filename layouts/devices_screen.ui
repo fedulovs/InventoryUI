@@ -114,7 +114,7 @@
               </property>
               <property name="icon">
                <iconset>
-                <normaloff>:/icons/icons/user.svg</normaloff>:/icons/icons/user.svg
+                   <normaloff>:/icons/icons/user.svg</normaloff>:/icons/icons/user.svg
                </iconset>
               </property>
              </widget>
@@ -165,22 +165,124 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QFrame" name="tabs">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-       </widget>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="leftMargin">
+                <number>9</number>
+            </property>
+            <item alignment="Qt::AlignLeft|Qt::AlignTop">
+                <widget class="QFrame" name="tabs">
+                    <property name="maximumSize">
+                        <size>
+                            <width>100</width>
+                            <height>16777215</height>
+                        </size>
+                    </property>
+                    <property name="styleSheet">
+                        <string notr="true">QPushButton {
+                            border: none
+                            }
+                        </string>
+                    </property>
+                    <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_3">
+                        <property name="rightMargin">
+                            <number>9</number>
+                        </property>
+                        <item>
+                            <widget class="QPushButton" name="ios_filter">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>50</width>
+                                        <height>50</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>16777215</width>
+                                        <height>16777215</height>
+                                    </size>
+                                </property>
+                                <property name="text">
+                                    <string/>
+                                </property>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QPushButton" name="android_filter">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>50</width>
+                                        <height>50</height>
+                                    </size>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>16777215</width>
+                                        <height>16777215</height>
+                                    </size>
+                                </property>
+                                <property name="text">
+                                    <string/>
+                                </property>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QPushButton" name="win_filter">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>50</width>
+                                        <height>50</height>
+                                    </size>
+                                </property>
+                                <property name="text">
+                                    <string/>
+                                </property>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QPushButton" name="mac_filter">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>50</width>
+                                        <height>50</height>
+                                    </size>
+                                </property>
+                                <property name="text">
+                                    <string/>
+                                </property>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
       </item>
       <item alignment="Qt::AlignLeft">
        <widget class="QFrame" name="table_container">
