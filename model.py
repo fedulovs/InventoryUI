@@ -13,7 +13,7 @@ class Device:
     #             comment text
 
     def __init__(self, device_name, brand, os_name, os_version, cpu, owner, snipe_it, serial_number, identifier,
-                 comment):
+                 comment, image_url):
         self.device_name = device_name
         self.brand = brand
         self.os_name = os_name
@@ -24,6 +24,7 @@ class Device:
         self.serial_number = serial_number
         self.identifier = identifier
         self.comment = comment
+        self.image_url = image_url
 
     @property
     def full_os(self):

@@ -1,12 +1,14 @@
 import os
 import sys
 
+import requests
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QImage, QPixmap
 from PyQt5.QtWidgets import QDialog, QApplication, QHeaderView
 from PyQt5.uic import loadUi
 
 import database as db
+import snipe_it as si
 from model import Device
 
 device = {}
@@ -131,7 +133,8 @@ class MainWindow(QDialog):
         self.tableWidget.horizontalHeader().setSectionResizeMode(5, QHeaderView.Stretch)
         self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
 
-        self.load_data(db.get_all_devices())
+        # self.load_data(db.get_all_devices())
+        self.load_data(si.get_all_devices())
 
     def on_selection_changed(self, selected):
         for index in selected.indexes():
@@ -153,18 +156,32 @@ class MainWindow(QDialog):
     # device['identifier'] = row[8] +
     # device['comment'] = row[9]
 
+    # def load_data(self, devices):
+    #     global filtered_devices
+    #     filtered_devices = devices
+    #     row = 0
+    #     self.tableWidget.setRowCount(len(devices))
+    #     for item in devices:
+    #         self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(item.device_name))
+    #         self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(item.brand))
+    #         self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(f"{item.os_name} {item.os_version}"))
+    #         self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(item.cpu))
+    #         self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(item.owner))
+    #         self.tableWidget.setItem(row, 5, QtWidgets.QTableWidgetItem(item.comment))
+    #         row = row + 1
+
     def load_data(self, devices):
         global filtered_devices
         filtered_devices = devices
         row = 0
         self.tableWidget.setRowCount(len(devices))
         for item in devices:
-            self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(item.device_name))
-            self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(item.brand))
-            self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(f"{item.os_name} {item.os_version}"))
-            self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(item.cpu))
-            self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(item.owner))
-            self.tableWidget.setItem(row, 5, QtWidgets.QTableWidgetItem(item.comment))
+            self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(item["model"]["name"]))
+            self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(item["manufacturer"]["name"]))
+            self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(""))
+            self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(""))
+            self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(item["assigned_to"]["name"]))
+            self.tableWidget.setItem(row, 5, QtWidgets.QTableWidgetItem(item["notes"]))
             row = row + 1
 
     def filter_devices(self, filter):
@@ -441,16 +458,37 @@ class DeviceInfo(QDialog):
         self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
         self.back_button.clicked.connect(lambda: self.go_back())
 
-        db_device = filtered_devices[row]
+        # db_device = filtered_devices[row]
+        si_device = si.build_device_from_json(si.get_device_by_row(row))
 
-        self.device_name.setText(db_device.device_name)
-        self.cpu.setText(db_device.cpu)
-        self.owner.setText(db_device.owner)
-        self.os_version.setText(f"{db_device.os_name} {db_device.os_version}")
-        self.snipe_it.setText(db_device.snipe_it)
-        self.serial_number.setText(db_device.serial_number)
-        self.identifier.setText(db_device.identifier)
-        self.comments.setText(db_device.comment)
+        image = QImage().scaled(300, 200, QtCore.Qt.KeepAspectRatio)
+
+        # Checking image link for Null
+        if si_device.image_url is not None:
+            image.loadFromData(requests.get(si_device.image_url).content)
+            self.device_picture.setPixmap(QPixmap(image))
+        else:
+            image = QImage().scaled(30, 20, QtCore.Qt.KeepAspectRatio)
+            self.device_picture.setPixmap(QPixmap('icons/no_image_available.svg'))
+
+        self.device_name.setText(si_device.device_name)
+        self.cpu.setText(si_device.cpu)
+        self.owner.setText(si_device.owner)
+        self.os_version.setText(si_device.os_name)
+        self.snipe_it.setText(si_device.snipe_it)
+        self.serial_number.setText(si_device.serial_number)
+        self.identifier.setText(si_device.identifier)
+        self.comments.setText(si_device.comment)
+
+        # self.device_picture.setPixmap(QPixmap(image))
+        # self.device_name.setText(db_device.device_name)
+        # self.cpu.setText(db_device.cpu)
+        # self.owner.setText(db_device.owner)
+        # self.os_version.setText(f"{db_device.os_name} {db_device.os_version}")
+        # self.snipe_it.setText(db_device.snipe_it)
+        # self.serial_number.setText(db_device.serial_number)
+        # self.identifier.setText(db_device.identifier)
+        # self.comments.setText(db_device.comment)
 
     def take_device(self):
         print("Take device button clicked")
