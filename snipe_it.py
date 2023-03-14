@@ -19,7 +19,7 @@ def get_all_devices():
     json_response = response.json()
     devices = json_response["rows"]
 
-    print(devices)
+    # print(devices)
     return devices
 
     # model[name] = device_name i.e. Samsung Galaxy S22+

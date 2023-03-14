@@ -101,6 +101,9 @@ class MainWindow(QDialog):
 
         self.profile_button.setIcon(QIcon('icons/user.svg'))
 
+        # Search input
+        self.search_input.textChanged.connect(lambda: self.search())
+
         # OS filters
         self.all_filter.setIcon(QIcon('icons/home1.svg'))
         self.all_filter.setIconSize(QtCore.QSize(35, 35))
@@ -116,6 +119,8 @@ class MainWindow(QDialog):
 
         self.mac_filter.setIcon(QIcon('icons/mac.svg'))
         self.mac_filter.setIconSize(QtCore.QSize(35, 35))
+
+        # TODO: Rewrite filter functions to request snipeIT
 
         self.all_filter.clicked.connect(lambda: self.load_data(db.get_all_devices()))
         self.android_filter.clicked.connect(lambda: self.load_data(self.filter_devices("Android")))
@@ -134,7 +139,8 @@ class MainWindow(QDialog):
         self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
 
         # self.load_data(db.get_all_devices())
-        self.load_data(si.get_all_devices())
+        self.load_data()
+        self.populate_devices_table(filtered_devices)
 
     def on_selection_changed(self, selected):
         for index in selected.indexes():
@@ -170,9 +176,11 @@ class MainWindow(QDialog):
     #         self.tableWidget.setItem(row, 5, QtWidgets.QTableWidgetItem(item.comment))
     #         row = row + 1
 
-    def load_data(self, devices):
+    def load_data(self):
         global filtered_devices
-        filtered_devices = devices
+        filtered_devices = si.get_all_devices()
+
+    def populate_devices_table(self, devices):
         row = 0
         self.tableWidget.setRowCount(len(devices))
         for item in devices:
@@ -188,6 +196,19 @@ class MainWindow(QDialog):
         global filtered_devices
         filtered_devices = db.get_devices_by_os(filter)
         return filtered_devices
+
+    def search(self):
+        global filtered_devices
+        devices = []
+        text = self.search_input.text().lower()
+
+        if len(text) == 0:
+            self.populate_devices_table(filtered_devices)
+        else:
+            for device in filtered_devices:
+                if text in device['model']['name'].lower():
+                    devices.append(device)
+            self.populate_devices_table(devices)
 
     def add_device(self):
         print("Open Device button clicked")
