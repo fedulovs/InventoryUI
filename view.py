@@ -120,13 +120,12 @@ class MainWindow(QDialog):
         self.mac_filter.setIcon(QIcon('icons/mac.svg'))
         self.mac_filter.setIconSize(QtCore.QSize(35, 35))
 
-        # TODO: Rewrite filter functions to request snipeIT
-
-        self.all_filter.clicked.connect(lambda: self.load_data(db.get_all_devices()))
-        self.android_filter.clicked.connect(lambda: self.load_data(self.filter_devices("Android")))
-        self.ios_filter.clicked.connect(lambda: self.load_data(self.filter_devices("iOS")))
-        self.win_filter.clicked.connect(lambda: self.load_data(self.filter_devices("Windows")))
-        self.mac_filter.clicked.connect(lambda: self.load_data(self.filter_devices("Mac")))
+        # Sidebar filters
+        self.all_filter.clicked.connect(lambda: self.populate_devices_table(filtered_devices))
+        self.android_filter.clicked.connect(lambda: self.filter_by_os('android'))
+        self.ios_filter.clicked.connect(lambda: self.filter_by_os('ios'))
+        self.win_filter.clicked.connect(lambda: self.filter_by_os('windows'))
+        self.mac_filter.clicked.connect(lambda: self.filter_by_os('mac'))
 
         # Add button settings
         self.add_device_button.setIcon(QIcon('icons/plus2.svg'))
@@ -192,11 +191,6 @@ class MainWindow(QDialog):
             self.tableWidget.setItem(row, 5, QtWidgets.QTableWidgetItem(item["notes"]))
             row = row + 1
 
-    def filter_devices(self, filter):
-        global filtered_devices
-        filtered_devices = db.get_devices_by_os(filter)
-        return filtered_devices
-
     def search(self):
         global filtered_devices
         devices = []
@@ -209,6 +203,25 @@ class MainWindow(QDialog):
                 if text in device['model']['name'].lower():
                     devices.append(device)
             self.populate_devices_table(devices)
+
+    def filter_devices(self, filter):
+        global filtered_devices
+        filtered_devices = db.get_devices_by_os(filter)
+        return filtered_devices
+
+    def filter_by_os(self, os):
+        global filtered_devices
+        devices_after_filter = []
+
+        if os == 'ios':
+            for device in filtered_devices:
+                if device['manufacturer']['name'].lower() == 'apple':
+                    devices_after_filter.append(device)
+        elif os == 'android':
+            for device in filtered_devices:
+                if device['manufacturer']['name'].lower() in ['samsung', 'google', 'xiaomi', 'huawei']:
+                    devices_after_filter.append(device)
+        self.populate_devices_table(devices_after_filter)
 
     def add_device(self):
         print("Open Device button clicked")
