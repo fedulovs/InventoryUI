@@ -17,7 +17,7 @@ def get_all_devices():
     response = requests.get(config('HARDWARE_URL'), headers=headers)
 
     json_response = response.json()
-    devices = json_response["rows"]
+    devices = json_response['rows']
 
     # print(devices)
     return devices
@@ -50,7 +50,7 @@ def get_devices_number():
     response = requests.get(config('HARDWARE_URL'), headers=headers)
 
     json_response = response.json()
-    devices_count = json_response["total"]
+    devices_count = json_response['total']
 
     return devices_count
 

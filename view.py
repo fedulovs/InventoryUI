@@ -11,10 +11,12 @@ import database as db
 import snipe_it as si
 from model import Device
 
+devices_from_db = []
+filtered_devices = []
 device = {}
 new_device = {}
 row = None
-filtered_devices = []
+is_filtered = False  # Determines whether any of the filters were applied
 
 
 def resource_path(relative_path):
@@ -121,7 +123,7 @@ class MainWindow(QDialog):
         self.mac_filter.setIconSize(QtCore.QSize(35, 35))
 
         # Sidebar filters
-        self.all_filter.clicked.connect(lambda: self.populate_devices_table(filtered_devices))
+        self.all_filter.clicked.connect(lambda: self.remove_all_filters())
         self.android_filter.clicked.connect(lambda: self.filter_by_os('android'))
         self.ios_filter.clicked.connect(lambda: self.filter_by_os('ios'))
         self.win_filter.clicked.connect(lambda: self.filter_by_os('windows'))
@@ -139,15 +141,14 @@ class MainWindow(QDialog):
 
         # self.load_data(db.get_all_devices())
         self.load_data()
-        self.populate_devices_table(filtered_devices)
+        self.populate_devices_table(devices_from_db)
 
     def on_selection_changed(self, selected):
         for index in selected.indexes():
             print(f'selected cell location row is {index.row()}, Column is {index.column()}')
             global row
-            # row = index.row() + 1
-            print(index.row())
             row = index.row()
+            print(f'clicked row is {row}')
             self.open_device_info()
 
     # device['device_name'] = row[0] +
@@ -162,8 +163,8 @@ class MainWindow(QDialog):
     # device['comment'] = row[9]
 
     # def load_data(self, devices):
-    #     global filtered_devices
-    #     filtered_devices = devices
+    #     global devices_from_db
+    #     devices_from_db = devices
     #     row = 0
     #     self.tableWidget.setRowCount(len(devices))
     #     for item in devices:
@@ -176,8 +177,8 @@ class MainWindow(QDialog):
     #         row = row + 1
 
     def load_data(self):
-        global filtered_devices
-        filtered_devices = si.get_all_devices()
+        global devices_from_db
+        devices_from_db = si.get_all_devices()
 
     def populate_devices_table(self, devices):
         row = 0
@@ -192,36 +193,50 @@ class MainWindow(QDialog):
             row = row + 1
 
     def search(self):
+        global devices_from_db
         global filtered_devices
-        devices = []
+        global is_filtered
+
         text = self.search_input.text().lower()
 
         if len(text) == 0:
-            self.populate_devices_table(filtered_devices)
+            self.populate_devices_table(devices_from_db)
+            is_filtered = False
         else:
-            for device in filtered_devices:
+            filtered_devices.clear()
+            for device in devices_from_db:
                 if text in device['model']['name'].lower():
-                    devices.append(device)
-            self.populate_devices_table(devices)
+                    filtered_devices.append(device)
+            self.populate_devices_table(filtered_devices)
+            is_filtered = True
 
     def filter_devices(self, filter):
-        global filtered_devices
-        filtered_devices = db.get_devices_by_os(filter)
-        return filtered_devices
+        global devices_from_db
+        devices_from_db = db.get_devices_by_os(filter)
+        return devices_from_db
 
     def filter_by_os(self, os):
+        global devices_from_db
         global filtered_devices
-        devices_after_filter = []
+        global is_filtered
+        filtered_devices = []
 
         if os == 'ios':
-            for device in filtered_devices:
+            for device in devices_from_db:
                 if device['manufacturer']['name'].lower() == 'apple':
-                    devices_after_filter.append(device)
+                    filtered_devices.append(device)
         elif os == 'android':
-            for device in filtered_devices:
+            for device in devices_from_db:
                 if device['manufacturer']['name'].lower() in ['samsung', 'google', 'xiaomi', 'huawei']:
-                    devices_after_filter.append(device)
-        self.populate_devices_table(devices_after_filter)
+                    filtered_devices.append(device)
+        self.populate_devices_table(filtered_devices)
+
+        is_filtered = True
+
+    def remove_all_filters(self):
+        global is_filtered
+        self.populate_devices_table(devices_from_db)
+        is_filtered = False
 
     def add_device(self):
         print("Open Device button clicked")
@@ -492,27 +507,44 @@ class DeviceInfo(QDialog):
         self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
         self.back_button.clicked.connect(lambda: self.go_back())
 
-        # db_device = filtered_devices[row]
-        si_device = si.build_device_from_json(si.get_device_by_row(row))
+        # db_device = devices_from_db[row]
+        # si_device = si.build_device_from_json(si.get_device_by_row(row))
+
+        if is_filtered:
+            device = filtered_devices[row]
+        else:
+            device = devices_from_db[row]
 
         image = QImage().scaled(300, 200, QtCore.Qt.KeepAspectRatio)
 
         # Checking image link for Null
-        if si_device.image_url is not None:
-            image.loadFromData(requests.get(si_device.image_url).content)
+        if device['image'] is not None:
+            image.loadFromData(requests.get(device['image']).content)
             self.device_picture.setPixmap(QPixmap(image))
         else:
             image = QImage().scaled(30, 20, QtCore.Qt.KeepAspectRatio)
             self.device_picture.setPixmap(QPixmap('icons/no_image_available.svg'))
 
-        self.device_name.setText(si_device.device_name)
-        self.cpu.setText(si_device.cpu)
-        self.owner.setText(si_device.owner)
-        self.os_version.setText(si_device.os_name)
-        self.snipe_it.setText(si_device.snipe_it)
-        self.serial_number.setText(si_device.serial_number)
-        self.identifier.setText(si_device.identifier)
-        self.comments.setText(si_device.comment)
+            # device_name = device['model']['name'],
+            # brand = device['manufacturer']['name'],
+            # os_name = '',
+            # os_version = '',
+            # cpu = '',
+            # owner = device['assigned_to']['username'],
+            # snipe_it = device['asset_tag'],
+            # serial_number = device['serial'],
+            # identifier = '',
+            # comment = device['notes'],
+            # image_url = device['image'])
+
+        self.device_name.setText(device['model']['name'])
+        self.cpu.setText('')
+        self.owner.setText(device['assigned_to']['username'])
+        self.os_version.setText('')
+        self.snipe_it.setText(device['asset_tag'])
+        self.serial_number.setText(device['serial'])
+        self.identifier.setText('')
+        self.comments.setText(device['notes'])
 
         # self.device_picture.setPixmap(QPixmap(image))
         # self.device_name.setText(db_device.device_name)
