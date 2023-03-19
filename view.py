@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 
@@ -43,7 +44,7 @@ class LoginWindow(QDialog):
         self.login_button.clicked.connect(lambda: self.open_devices_list())
 
     def add_new_user(self):
-        print("Add new user button clicked")
+        logging.info("Add new user button clicked")
         create_user_window = CreateUserWindow()
         widget.addWidget(create_user_window)
         widget.setFixedHeight(800)
@@ -51,7 +52,7 @@ class LoginWindow(QDialog):
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def open_devices_list(self):
-        print("Login button clicked")
+        logging.info("Login button clicked")
         user = self.user_picker.currentText()
         global user_name
         user_name = user
@@ -86,7 +87,7 @@ class CreateUserWindow(QDialog):
                 f.close()
 
     def go_back(self):
-        print("Going back to login window")
+        logging.info("Going back to login window")
         login_window = LoginWindow()
         widget.addWidget(login_window)
         widget.setFixedHeight(800)
@@ -145,36 +146,30 @@ class MainWindow(QDialog):
 
     def on_selection_changed(self, selected):
         for index in selected.indexes():
-            print(f'selected cell location row is {index.row()}, Column is {index.column()}')
+            logging.info(f'selected cell location row is {index.row()}, Column is {index.column()}')
             global row
             row = index.row()
-            print(f'clicked row is {row}')
+            logging.info(f'clicked row is {row}')
             self.open_device_info()
 
-    # device['device_name'] = row[0] +
-    # device['brand'] = row[1] +
-    # device['os_name'] = row[2] +
-    # device['os_version'] = row[3] +
-    # device['cpu'] = row[4]
-    # device['owner'] = row[5]
-    # device['snipe_it'] = row[6] +
-    # device['serial_number'] = row[7] +
-    # device['identifier'] = row[8] +
-    # device['comment'] = row[9]
-
-    # def load_data(self, devices):
-    #     global devices_from_db
-    #     devices_from_db = devices
-    #     row = 0
-    #     self.tableWidget.setRowCount(len(devices))
-    #     for item in devices:
-    #         self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(item.device_name))
-    #         self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(item.brand))
-    #         self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(f"{item.os_name} {item.os_version}"))
-    #         self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(item.cpu))
-    #         self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(item.owner))
-    #         self.tableWidget.setItem(row, 5, QtWidgets.QTableWidgetItem(item.comment))
-    #         row = row + 1
+        """
+        Example for database source
+        
+        def load_data(self, devices):
+        global devices_from_db
+        devices_from_db = devices
+        row = 0
+        self.tableWidget.setRowCount(len(devices))
+        for item in devices:
+            self.tableWidget.setItem(row, 0, QtWidgets.QTableWidgetItem(item.device_name))
+            self.tableWidget.setItem(row, 1, QtWidgets.QTableWidgetItem(item.brand))
+            self.tableWidget.setItem(row, 2, QtWidgets.QTableWidgetItem(f"{item.os_name} {item.os_version}"))
+            self.tableWidget.setItem(row, 3, QtWidgets.QTableWidgetItem(item.cpu))
+            self.tableWidget.setItem(row, 4, QtWidgets.QTableWidgetItem(item.owner))
+            self.tableWidget.setItem(row, 5, QtWidgets.QTableWidgetItem(item.comment))
+            row = row + 1
+            
+        """
 
     def load_data(self):
         global devices_from_db
@@ -239,7 +234,7 @@ class MainWindow(QDialog):
         is_filtered = False
 
     def add_device(self):
-        print("Open Device button clicked")
+        logging.info("Open Device button clicked")
         add_device1 = DeviceDialog1()
         widget.addWidget(add_device1)
         widget.setFixedHeight(500)
@@ -247,7 +242,7 @@ class MainWindow(QDialog):
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def open_device_info(self):
-        print("Open Device info button clicked")
+        logging.info("Open Device info button clicked")
         device_info = DeviceInfo()
         widget.addWidget(device_info)
         widget.setCurrentIndex(widget.currentIndex() + 1)
@@ -266,7 +261,7 @@ class DeviceDialog1(QDialog):
         self.nextButton.clicked.connect(lambda: self.open_os_input())
 
     def open_os_input(self):
-        print("Open OS info button clicked")
+        logging.info("Open OS info button clicked")
         add_device2 = DeviceDialog2()
         widget.addWidget(add_device2)
         widget.setFixedHeight(500)
@@ -276,7 +271,7 @@ class DeviceDialog1(QDialog):
         new_device['brand'] = self.brand_input.text()
 
     def go_back(self):
-        print("Going back to main window")
+        logging.info("Going back to main window")
         mainwindow = MainWindow()
         widget.addWidget(mainwindow)
         widget.setFixedHeight(800)
@@ -302,7 +297,7 @@ class DeviceDialog2(QDialog):
         self.backButton.clicked.connect(lambda: self.go_back())
 
     def open_identifiers_input(self):
-        print("Open identifiers button clicked")
+        logging.info("Open identifiers button clicked")
         add_device3 = DeviceDialog3()
         widget.addWidget(add_device3)
         widget.setFixedHeight(501)
@@ -312,7 +307,7 @@ class DeviceDialog2(QDialog):
         new_device['os_version'] = self.os_version_input.text()
 
     def go_back(self):
-        print("Going back to screen 1")
+        logging.info("Going back to screen 1")
         add_device1 = DeviceDialog1()
         widget.addWidget(add_device1)
         widget.setFixedHeight(501)
@@ -333,7 +328,7 @@ class DeviceDialog3(QDialog):
         self.backButton.clicked.connect(lambda: self.go_back())
 
     def open_not_compatible_input(self):
-        print("Open comments button clicked")
+        logging.info("Open comments button clicked")
         add_device4 = DeviceDialog4()
         widget.addWidget(add_device4)
         widget.setFixedHeight(501)
@@ -345,7 +340,7 @@ class DeviceDialog3(QDialog):
         new_device['identifier'] = self.identifier_input.text()
 
     def go_back(self):
-        print("Going back to screen 2")
+        logging.info("Going back to screen 2")
         add_device2 = DeviceDialog2()
         widget.addWidget(add_device2)
         widget.setFixedHeight(501)
@@ -366,17 +361,17 @@ class DeviceDialog4(QDialog):
         self.backButton.clicked.connect(lambda: self.go_back())
 
     def open_cpu_input(self):
-        print("Open cpu button clicked")
+        logging.info("Open cpu button clicked")
         add_device5 = DeviceDialog5()
         widget.addWidget(add_device5)
         widget.setFixedHeight(501)
         widget.setFixedWidth(411)
         widget.setCurrentIndex(widget.currentIndex() + 1)
         new_device['comment'] = self.comments_input.toPlainText()
-        print(new_device)
+        logging.info(new_device)
 
     def go_back(self):
-        print("Going back to screen 3")
+        logging.info("Going back to screen 3")
         add_device3 = DeviceDialog3()
         widget.addWidget(add_device3)
         widget.setFixedHeight(501)
@@ -397,7 +392,7 @@ class DeviceDialog5(QDialog):
         self.backButton.clicked.connect(lambda: self.go_back())
 
     def open_confirmation_screen(self):
-        print("Open not compatible with input")
+        logging.info("Open not compatible with input")
         confirmation_screen = ConfirmationDialogue()
         widget.addWidget(confirmation_screen)
         widget.setFixedHeight(501)
@@ -406,7 +401,7 @@ class DeviceDialog5(QDialog):
         new_device['cpu'] = self.cpu_input.text()
 
     def go_back(self):
-        print("Going back to screen 4")
+        logging.info("Going back to screen 4")
         add_device4 = DeviceDialog4()
         widget.addWidget(add_device4)
         widget.setFixedHeight(501)
@@ -432,17 +427,17 @@ class DeviceDialog6(QDialog):
         self.backButton.clicked.connect(lambda: self.go_back())
 
     def open_confirmation_screen(self):
-        print("Confirmation button clicked")
+        logging.info("Confirmation button clicked")
         confirmation_screen = ConfirmationDialogue()
         widget.addWidget(confirmation_screen)
         widget.setFixedHeight(501)
         widget.setFixedWidth(411)
         widget.setCurrentIndex(widget.currentIndex() + 1)
         new_device['not_compatible_with'] = self.dropdown.currentText()
-        print(new_device)
+        logging.info(new_device)
 
     def go_back(self):
-        print("Going back to screen 5")
+        logging.info("Going back to screen 5")
         add_device5 = DeviceDialog5()
         widget.addWidget(add_device5)
         widget.setFixedHeight(501)
@@ -489,7 +484,7 @@ class ConfirmationDialogue(QDialog):
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def go_back(self):
-        print("Going back to screen 4")
+        logging.info("Going back to screen 4")
         add_device4 = DeviceDialog4()
         widget.addWidget(add_device4)
         widget.setFixedHeight(501)
@@ -508,7 +503,6 @@ class DeviceInfo(QDialog):
         self.back_button.clicked.connect(lambda: self.go_back())
 
         # db_device = devices_from_db[row]
-        # si_device = si.build_device_from_json(si.get_device_by_row(row))
 
         if is_filtered:
             device = filtered_devices[row]
@@ -524,18 +518,6 @@ class DeviceInfo(QDialog):
         else:
             image = QImage().scaled(30, 20, QtCore.Qt.KeepAspectRatio)
             self.device_picture.setPixmap(QPixmap('icons/no_image_available.svg'))
-
-            # device_name = device['model']['name'],
-            # brand = device['manufacturer']['name'],
-            # os_name = '',
-            # os_version = '',
-            # cpu = '',
-            # owner = device['assigned_to']['username'],
-            # snipe_it = device['asset_tag'],
-            # serial_number = device['serial'],
-            # identifier = '',
-            # comment = device['notes'],
-            # image_url = device['image'])
 
         self.device_name.setText(device['model']['name'])
         self.cpu.setText('')
@@ -557,16 +539,16 @@ class DeviceInfo(QDialog):
         # self.comments.setText(db_device.comment)
 
     def take_device(self):
-        print("Take device button clicked")
+        logging.info("Take device button clicked")
         # TODO: change device owner
         # TODO: open cabinet
 
     def change_device_info(self):
-        print("Change device info button clicked")
+        logging.info("Change device info button clicked")
         # TODO: open device fields
 
     def go_back(self):
-        print("Going back to main window")
+        logging.info("Going back to main window")
         mainwindow = MainWindow()
         widget.addWidget(mainwindow)
         widget.setFixedHeight(800)
@@ -574,19 +556,26 @@ class DeviceInfo(QDialog):
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
-app = QApplication(sys.argv)
+if __name__ == '__main__':
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S"
+    )
 
-login_window = LoginWindow()
-widget = QtWidgets.QStackedWidget()
-widget.addWidget(login_window)
+    app = QApplication(sys.argv)
 
-widget.setFixedHeight(800)
-widget.setFixedWidth(1200)
-widget.setWindowTitle("Device inventory")
-widget.setWindowIcon(QIcon('icons/phone_iphone.svg'))
+    login_window = LoginWindow()
+    widget = QtWidgets.QStackedWidget()
+    widget.addWidget(login_window)
 
-widget.show()
-try:
-    sys.exit(app.exec_())
-except:
-    print("Exiting")
+    widget.setFixedHeight(800)
+    widget.setFixedWidth(1200)
+    widget.setWindowTitle("Device inventory")
+    widget.setWindowIcon(QIcon('icons/phone_iphone.svg'))
+
+    widget.show()
+    try:
+        sys.exit(app.exec_())
+    except:
+        logging.info("Exiting")

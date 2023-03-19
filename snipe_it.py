@@ -19,31 +19,7 @@ def get_all_devices():
     json_response = response.json()
     devices = json_response['rows']
 
-    # print(devices)
     return devices
-
-    # model[name] = device_name i.e. Samsung Galaxy S22+
-    # model_number = "S22+"
-    # asset_tag = snipe_it
-    # category["name"] = "Smart phone"
-    # manufacturer["name"] = Apple / Samsung
-    # notes = comments
-    # image = image
-    # assigned_to[username], [name], [first_name], [last_name]
-    # Color[value] = black
-    # id = snipe_it_id
-    # serial = serial_number
-
-    # device['device_name'] = row[0] +
-    # device['brand'] = row[1] +
-    # device['os_name'] = row[2] +
-    # device['os_version'] = row[3] +
-    # device['cpu'] = row[4]
-    # device['owner'] = row[5]
-    # device['snipe_it'] = row[6] +
-    # device['serial_number'] = row[7] +
-    # device['identifier'] = row[8] +
-    # device['comment'] = row[9]
 
 
 def get_devices_number():
@@ -99,6 +75,4 @@ def add_device_to_snipe_it():
     print(response.text)
 
 
-# get_devices_number()
 get_all_devices()
-# add_device_to_snipe_it()
