@@ -83,7 +83,7 @@
                                                 <string/>
                                             </property>
                                             <property name="icon">
-                                                <iconset resource="icons/icons.qrc">
+                                                <iconset>
                                                     <normaloff>:/arrow-left.svg</normaloff>:/arrow-left.svg
                                                 </iconset>
                                             </property>
@@ -106,6 +106,36 @@
                                 <property name="frameShadow">
                                     <enum>QFrame::Raised</enum>
                                 </property>
+                                <layout class="QVBoxLayout" name="verticalLayout_7">
+                                    <item>
+                                        <widget class="QLabel" name="device_picture">
+                                            <property name="sizePolicy">
+                                                <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="minimumSize">
+                                                <size>
+                                                    <width>50</width>
+                                                    <height>50</height>
+                                                </size>
+                                            </property>
+                                            <property name="maximumSize">
+                                                <size>
+                                                    <width>230</width>
+                                                    <height>344</height>
+                                                </size>
+                                            </property>
+                                            <property name="text">
+                                                <string/>
+                                            </property>
+                                            <property name="scaledContents">
+                                                <bool>true</bool>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                </layout>
                             </widget>
                         </item>
                     </layout>
@@ -246,7 +276,7 @@
                                                 <item>
                                                     <widget class="QFrame" name="values_container">
                                                         <property name="styleSheet">
-                                                            <string notr="true">font-weight: bold</string>
+                                                            <string notr="true"/>
                                                         </property>
                                                         <property name="frameShape">
                                                             <enum>QFrame::StyledPanel</enum>
@@ -325,8 +355,7 @@
                                                 </size>
                                             </property>
                                             <property name="styleSheet">
-                                                <string notr="true">
-                                                </string>
+                                                <string notr="true"/>
                                             </property>
                                             <property name="frameShape">
                                                 <enum>QFrame::StyledPanel</enum>

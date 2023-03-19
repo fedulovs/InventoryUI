@@ -93,9 +93,9 @@ def get_device_by_row(row_id):
 
 # get_device_by_row(1)
 
-device_1 = Device('iphone 14', 'Apple', 'iOS', '15', 'cpu', 'cabinet', '45254435', 'DDDS123432', '1', 'no comments')
-device_2 = Device('iphone 8', 'Apple', 'iOS', '13', 'cpu', 'cabinet', '1234556', 'FDDS123432', '123',
-                  'Screen was replaced')
+# device_1 = Device('iphone 14', 'Apple', 'iOS', '15', 'cpu', 'cabinet', '45254435', 'DDDS123432', '1', 'no comments')
+# device_2 = Device('iphone 8', 'Apple', 'iOS', '13', 'cpu', 'cabinet', '1234556', 'FDDS123432', '123',
+#                   'Screen was replaced')
 
 
 def add_device(device):
