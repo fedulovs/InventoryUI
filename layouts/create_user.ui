@@ -141,7 +141,7 @@
                                                                         <string/>
                                                                     </property>
                                                                     <property name="icon">
-                                                                        <iconset resource="icons/icons.qrc">
+                                                                        <iconset>
                                                                             <normaloff>:/arrow-left.svg</normaloff>
                                                                             :/arrow-left.svg
                                                                         </iconset>
@@ -199,7 +199,7 @@
                                                             <string/>
                                                         </property>
                                                         <property name="icon">
-                                                            <iconset resource="icons.qrc">
+                                                            <iconset>
                                                                 <normaloff>:/icons/icons/arrow-down-left.svg</normaloff>
                                                                 :/icons/icons/arrow-down-left.svg
                                                             </iconset>
@@ -224,7 +224,7 @@
                                                             <string/>
                                                         </property>
                                                         <property name="icon">
-                                                            <iconset resource="icons.qrc">
+                                                            <iconset>
                                                                 <normaloff>:/icons/icons/minimize-2.svg</normaloff>
                                                                 :/icons/icons/minimize-2.svg
                                                             </iconset>
@@ -249,7 +249,7 @@
                                                             <string/>
                                                         </property>
                                                         <property name="icon">
-                                                            <iconset resource="icons.qrc">
+                                                            <iconset>
                                                                 <normaloff>:/icons/icons/x.svg</normaloff>
                                                                 :/icons/icons/x.svg
                                                             </iconset>
@@ -384,10 +384,19 @@
                                                             <cursorShape>PointingHandCursor</cursorShape>
                                                         </property>
                                                         <property name="styleSheet">
-                                                            <string notr="true">border-radius : 15; border: 2 px solid
-                                                                black;
-                                                                background-color :
-                                                                #414BB2; color: white
+                                                            <string notr="true">QPushButton {
+                                                                border-radius: 15;
+                                                                border: 2 px solid black;
+                                                                background-color: #414BB2;
+                                                                color: white
+                                                                }
+
+                                                                QPushButton:hover{
+                                                                border-radius: 15;
+                                                                border: 4 px solid black;
+                                                                background-color: rgb(51, 60, 140);
+                                                                color: white;
+                                                                }
                                                             </string>
                                                         </property>
                                                         <property name="text">

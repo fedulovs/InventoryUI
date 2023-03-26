@@ -142,7 +142,7 @@
               </property>
               <property name="icon">
                <iconset>
-                <normaloff>:/icons/icons/arrow-down-left.svg</normaloff>:/icons/icons/arrow-down-left.svg
+                   <normaloff>:/icons/icons/arrow-down-left.svg</normaloff>:/icons/icons/arrow-down-left.svg
                </iconset>
               </property>
              </widget>
@@ -165,9 +165,9 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset>
-                <normaloff>:/icons/icons/minimize-2.svg</normaloff>:/icons/icons/minimize-2.svg
-               </iconset>
+                  <iconset>
+                      <normaloff>:/icons/icons/minimize-2.svg</normaloff>:/icons/icons/minimize-2.svg
+                  </iconset>
               </property>
              </widget>
             </item>
@@ -189,9 +189,9 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset>
-                <normaloff>:/icons/icons/x.svg</normaloff>:/icons/icons/x.svg
-               </iconset>
+                  <iconset>
+                      <normaloff>:/icons/icons/x.svg</normaloff>:/icons/icons/x.svg
+                  </iconset>
               </property>
              </widget>
             </item>
@@ -317,13 +317,22 @@
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
-              <property name="styleSheet">
-               <string notr="true">border-radius : 15; border: 2 px solid
-                black;
-                background-color :
-                #414BB2; color: white
-               </string>
-              </property>
+                 <property name="styleSheet">
+                     <string notr="true">QPushButton {
+                         border-radius: 15;
+                         border: 2 px solid black;
+                         background-color: #414BB2;
+                         color: white
+                         }
+
+                         QPushButton:hover{
+                         border-radius: 15;
+                         border: 4 px solid black;
+                         background-color: rgb(51, 60, 140);
+                         color: white;
+                         }
+                     </string>
+                 </property>
               <property name="text">
                <string>LOG IN</string>
               </property>
@@ -334,9 +343,10 @@
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
-              <property name="styleSheet">
-               <string notr="true">border: none</string>
-              </property>
+                 <property name="styleSheet">
+                     <string notr="true">border: none;
+                     </string>
+                 </property>
               <property name="text">
                <string>ADD NEW USER</string>
               </property>

@@ -509,15 +509,16 @@ class DeviceInfo(QDialog):
         else:
             device = devices_from_db[row]
 
-        image = QImage().scaled(300, 200, QtCore.Qt.KeepAspectRatio)
-
         # Checking image link for Null
         if device['image'] is not None:
+            image = QImage().scaled(30, 20, QtCore.Qt.KeepAspectRatio)
             image.loadFromData(requests.get(device['image']).content)
             self.device_picture.setPixmap(QPixmap(image))
         else:
-            image = QImage().scaled(30, 20, QtCore.Qt.KeepAspectRatio)
+            # self.device_picture.move(self.picture_container.rect().center())
             self.device_picture.setPixmap(QPixmap('icons/no_image_available.svg'))
+            self.device_picture.setFixedWidth(48)
+            self.device_picture.setFixedHeight(48)
 
         self.device_name.setText(device['model']['name'])
         self.cpu.setText('')
