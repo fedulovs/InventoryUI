@@ -11,7 +11,9 @@ from PyQt5.uic import loadUi
 import database as db
 import snipe_it as si
 from model import Device
+from util import custom_logger
 
+user_name = ''
 devices_from_db = []
 filtered_devices = []
 device = {}
@@ -499,25 +501,29 @@ class DeviceInfo(QDialog):
         widget.setFixedHeight(430)
         widget.setFixedWidth(1120)
 
+        self.take_device_button.clicked.connect(lambda: self.take_device())
+        self.change_info_button.clicked.connect(lambda: self.change_device_info())
+
         self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
         self.back_button.clicked.connect(lambda: self.go_back())
 
         # db_device = devices_from_db[row]
+        global device
 
         if is_filtered:
             device = filtered_devices[row]
         else:
             device = devices_from_db[row]
 
-        image = QImage().scaled(300, 200, QtCore.Qt.KeepAspectRatio)
-
         # Checking image link for Null
         if device['image'] is not None:
+            image = QImage().scaled(30, 20, QtCore.Qt.KeepAspectRatio)
             image.loadFromData(requests.get(device['image']).content)
             self.device_picture.setPixmap(QPixmap(image))
         else:
-            image = QImage().scaled(30, 20, QtCore.Qt.KeepAspectRatio)
             self.device_picture.setPixmap(QPixmap('icons/no_image_available.svg'))
+            self.device_picture.setFixedWidth(48)
+            self.device_picture.setFixedHeight(48)
 
         self.device_name.setText(device['model']['name'])
         self.cpu.setText('')
@@ -540,11 +546,13 @@ class DeviceInfo(QDialog):
 
     def take_device(self):
         logging.info("Take device button clicked")
+        custom_logger.write_to_custom_log(f'{device["model"]["name"]} is taken by {user_name}')
         # TODO: change device owner
         # TODO: open cabinet
 
     def change_device_info(self):
         logging.info("Change device info button clicked")
+        custom_logger.write_to_custom_log(f'{device["model"]["name"]} fields are changed by {user_name}')
         # TODO: open device fields
 
     def go_back(self):

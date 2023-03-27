@@ -110,7 +110,18 @@
                                                 </size>
                                             </property>
                                             <property name="styleSheet">
-                                                <string notr="true">color: white; border: none</string>
+                                                <string notr="true">QPushButton {
+                                                    color: white;
+                                                    border: none;
+                                                    border-radius: 10;
+                                                    }
+
+                                                    QPushButton:hover {
+                                                    border: 2 px solid black;
+                                                    background-color: rgb(227, 227, 227);
+                                                    border-radius: 10;
+                                                    }
+                                                </string>
                                             </property>
                                             <property name="text">
                                                 <string/>
@@ -260,6 +271,22 @@
                             <height>80</height>
                         </size>
                     </property>
+                    <property name="styleSheet">
+                        <string notr="true">QPushButton {
+                            border-radius: 15;
+                            border: 2 px solid black;
+                            background-color: #414BB2;
+                            color: white
+                            }
+
+                            QPushButton:hover{
+                            border-radius: 15;
+                            border: 4 px solid black;
+                            background-color: rgb(51, 60, 140);
+                            color: white;
+                            }
+                        </string>
+                    </property>
                     <property name="frameShape">
                         <enum>QFrame::StyledPanel</enum>
                     </property>
@@ -299,14 +326,7 @@
                                     </font>
                                 </property>
                                 <property name="styleSheet">
-                                    <string notr="true">border-radius : 15; border: 2 px solid black; background-color:
-                                        #414BB2; color: white;
-
-                                        pressed ({
-                                        border: 4px solid #090;
-                                        border-radius: 5px
-                                        })
-                                    </string>
+                                    <string notr="true"/>
                                 </property>
                                 <property name="text">
                                     <string>Confirm</string>
@@ -333,13 +353,7 @@
                                     </font>
                                 </property>
                                 <property name="styleSheet">
-                                    <string notr="true">border-radius : 15; border: 2 px solid black; background-color:
-                                        #414BB2; color: white;
-
-                                        pressed ({
-                                        border: 4px solid #090;
-                                        border-radius: 5px
-                                        })
+                                    <string notr="true">
                                     </string>
                                 </property>
                                 <property name="text">
