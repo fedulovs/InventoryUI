@@ -63,8 +63,8 @@ class LoginWindow(QDialog):
         else:
             main_window = MainWindow()
             widget.addWidget(main_window)
-            widget.setFixedHeight(800)
-            widget.setFixedWidth(1200)
+            # widget.setFixedHeight(800)
+            # widget.setFixedWidth(1200)
             widget.setCurrentIndex(widget.currentIndex() + 1)
             new_device['owner'] = user
 
@@ -498,7 +498,7 @@ class DeviceInfo(QDialog):
     def __init__(self):
         super(DeviceInfo, self).__init__()
         loadUi("layouts/device_info.ui", self)
-        widget.setFixedHeight(430)
+        widget.setFixedHeight(470)  # Extended height +20 is set to fit on small screens
         widget.setFixedWidth(1120)
 
         self.take_device_button.clicked.connect(lambda: self.take_device())

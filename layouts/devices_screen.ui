@@ -10,6 +10,12 @@
     <height>774</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -114,7 +120,7 @@
               </property>
               <property name="icon">
                <iconset>
-                   <normaloff>:/icons/icons/user.svg</normaloff>:/icons/icons/user.svg
+                <normaloff>:/icons/icons/user.svg</normaloff>:/icons/icons/user.svg
                </iconset>
               </property>
              </widget>
@@ -129,7 +135,7 @@
               </property>
               <property name="minimumSize">
                <size>
-                <width>0</width>
+                <width>80</width>
                 <height>30</height>
                </size>
               </property>
@@ -521,20 +527,20 @@
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
-                 <property name="styleSheet">
-                     <string notr="true">QPushButton {
-                         border-radius : 50;
-                         border: 2 px solid black;
-                         background-color : #414BB2;
-                         color: white;
-                         font-color: white
-                         }
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+                border-radius : 50;
+                border: 2 px solid black;
+                background-color : #414BB2;
+                color: white;
+                font-color: white
+                }
 
-                         QPushButton:hover {
-                         background-color: rgb(51, 60, 140);
-                         }
-                     </string>
-                 </property>
+                QPushButton:hover {
+                background-color: rgb(51, 60, 140);
+                }
+               </string>
+              </property>
               <property name="text">
                <string/>
               </property>

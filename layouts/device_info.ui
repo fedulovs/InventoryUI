@@ -10,6 +10,12 @@
                 <height>438</height>
             </rect>
         </property>
+        <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+            </sizepolicy>
+        </property>
         <property name="windowTitle">
             <string>Dialog</string>
         </property>
@@ -127,7 +133,7 @@
                                     <item>
                                         <widget class="QLabel" name="device_picture">
                                             <property name="sizePolicy">
-                                                <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+                                                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
                                                     <horstretch>0</horstretch>
                                                     <verstretch>0</verstretch>
                                                 </sizepolicy>
@@ -160,6 +166,12 @@
             </item>
             <item>
                 <widget class="QFrame" name="frame_2">
+                    <property name="sizePolicy">
+                        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
                     <property name="styleSheet">
                         <string notr="true">QPushButton:hover {
                             background-color: #090;
@@ -216,6 +228,12 @@
                         </item>
                         <item>
                             <widget class="QFrame" name="frame_4">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
                                 <property name="frameShape">
                                     <enum>QFrame::StyledPanel</enum>
                                 </property>
@@ -225,6 +243,12 @@
                                 <layout class="QHBoxLayout" name="horizontalLayout_2">
                                     <item>
                                         <widget class="QFrame" name="frame_3">
+                                            <property name="sizePolicy">
+                                                <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
                                             <property name="frameShape">
                                                 <enum>QFrame::StyledPanel</enum>
                                             </property>
@@ -234,6 +258,12 @@
                                             <layout class="QHBoxLayout" name="horizontalLayout_3">
                                                 <item>
                                                     <widget class="QFrame" name="names_container">
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
                                                         <property name="styleSheet">
                                                             <string notr="true">font-weight: bold</string>
                                                         </property>
@@ -253,6 +283,13 @@
                                                             </item>
                                                             <item>
                                                                 <widget class="QLabel" name="owner_label">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Preferred"
+                                                                                    vsizetype="Minimum">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
                                                                     <property name="text">
                                                                         <string>Owner</string>
                                                                     </property>
@@ -260,6 +297,13 @@
                                                             </item>
                                                             <item>
                                                                 <widget class="QLabel" name="os_version_label">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Preferred"
+                                                                                    vsizetype="Minimum">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
                                                                     <property name="text">
                                                                         <string>OS version</string>
                                                                     </property>
@@ -267,6 +311,13 @@
                                                             </item>
                                                             <item>
                                                                 <widget class="QLabel" name="snipe_it_label">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Preferred"
+                                                                                    vsizetype="Minimum">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
                                                                     <property name="text">
                                                                         <string>Snipe IT</string>
                                                                     </property>
@@ -274,6 +325,13 @@
                                                             </item>
                                                             <item>
                                                                 <widget class="QLabel" name="serial_number_label">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Preferred"
+                                                                                    vsizetype="Minimum">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
                                                                     <property name="text">
                                                                         <string>Serial number</string>
                                                                     </property>
@@ -281,6 +339,13 @@
                                                             </item>
                                                             <item>
                                                                 <widget class="QLabel" name="identifyer_label">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Preferred"
+                                                                                    vsizetype="Minimum">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
                                                                     <property name="text">
                                                                         <string>Identifier (Provisioning UDID)</string>
                                                                     </property>
@@ -298,6 +363,12 @@
                                                 </item>
                                                 <item>
                                                     <widget class="QFrame" name="values_container">
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
                                                         <property name="styleSheet">
                                                             <string notr="true"/>
                                                         </property>
@@ -310,13 +381,30 @@
                                                         <layout class="QVBoxLayout" name="verticalLayout_5">
                                                             <item>
                                                                 <widget class="QLabel" name="cpu">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Preferred"
+                                                                                    vsizetype="Minimum">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
                                                                     <property name="text">
                                                                         <string/>
+                                                                    </property>
+                                                                    <property name="wordWrap">
+                                                                        <bool>true</bool>
                                                                     </property>
                                                                 </widget>
                                                             </item>
                                                             <item>
                                                                 <widget class="QLabel" name="owner">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Preferred"
+                                                                                    vsizetype="Minimum">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
                                                                     <property name="text">
                                                                         <string/>
                                                                     </property>
@@ -324,6 +412,13 @@
                                                             </item>
                                                             <item>
                                                                 <widget class="QLabel" name="os_version">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Preferred"
+                                                                                    vsizetype="Minimum">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
                                                                     <property name="text">
                                                                         <string/>
                                                                     </property>
@@ -331,6 +426,13 @@
                                                             </item>
                                                             <item>
                                                                 <widget class="QLabel" name="snipe_it">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Preferred"
+                                                                                    vsizetype="Minimum">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
                                                                     <property name="text">
                                                                         <string/>
                                                                     </property>
@@ -338,6 +440,13 @@
                                                             </item>
                                                             <item>
                                                                 <widget class="QLabel" name="serial_number">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Preferred"
+                                                                                    vsizetype="Minimum">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
                                                                     <property name="text">
                                                                         <string/>
                                                                     </property>
@@ -345,6 +454,13 @@
                                                             </item>
                                                             <item>
                                                                 <widget class="QLabel" name="identifier">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Preferred"
+                                                                                    vsizetype="Minimum">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
                                                                     <property name="text">
                                                                         <string/>
                                                                     </property>
@@ -352,8 +468,24 @@
                                                             </item>
                                                             <item>
                                                                 <widget class="QLabel" name="comments">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Preferred"
+                                                                                    vsizetype="Minimum">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
+                                                                    <property name="minimumSize">
+                                                                        <size>
+                                                                            <width>0</width>
+                                                                            <height>0</height>
+                                                                        </size>
+                                                                    </property>
                                                                     <property name="text">
                                                                         <string/>
+                                                                    </property>
+                                                                    <property name="wordWrap">
+                                                                        <bool>true</bool>
                                                                     </property>
                                                                 </widget>
                                                             </item>
@@ -366,7 +498,7 @@
                                     <item alignment="Qt::AlignBottom">
                                         <widget class="QFrame" name="buttons">
                                             <property name="sizePolicy">
-                                                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                                                <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                                                     <horstretch>0</horstretch>
                                                     <verstretch>0</verstretch>
                                                 </sizepolicy>
@@ -431,8 +563,7 @@
                                                             <cursorShape>PointingHandCursor</cursorShape>
                                                         </property>
                                                         <property name="styleSheet">
-                                                            <string notr="true">
-                                                            </string>
+                                                            <string notr="true"/>
                                                         </property>
                                                         <property name="text">
                                                             <string>CHANGE INFO</string>
