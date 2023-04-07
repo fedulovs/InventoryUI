@@ -142,6 +142,7 @@ class MainWindow(QDialog):
         self.tableWidget.horizontalHeader().setSectionResizeMode(5, QHeaderView.Stretch)
         self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
 
+
         # self.load_data(db.get_all_devices())
         self.load_data()
         self.populate_devices_table(devices_from_db)
@@ -247,6 +248,14 @@ class MainWindow(QDialog):
         logging.info("Open Device info button clicked")
         device_info = DeviceInfo()
         widget.addWidget(device_info)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+    def go_back(self):
+        logging.info("Going back to login window")
+        login_window = LoginWindow()
+        widget.addWidget(login_window)
+        widget.setFixedHeight(800)
+        widget.setFixedWidth(1200)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 

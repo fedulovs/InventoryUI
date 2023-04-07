@@ -543,6 +543,12 @@
                                                         <property name="cursor">
                                                             <cursorShape>PointingHandCursor</cursorShape>
                                                         </property>
+                                                        <property name="toolTip">
+                                                            <string>Take device</string>
+                                                        </property>
+                                                        <property name="toolTipDuration">
+                                                            <number>2000</number>
+                                                        </property>
                                                         <property name="styleSheet">
                                                             <string notr="true"/>
                                                         </property>
@@ -561,6 +567,12 @@
                                                         </property>
                                                         <property name="cursor">
                                                             <cursorShape>PointingHandCursor</cursorShape>
+                                                        </property>
+                                                        <property name="toolTip">
+                                                            <string>Change device info</string>
+                                                        </property>
+                                                        <property name="toolTipDuration">
+                                                            <number>2000</number>
                                                         </property>
                                                         <property name="styleSheet">
                                                             <string notr="true"/>
