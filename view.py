@@ -9,9 +9,8 @@ from PyQt5.QtWidgets import QDialog, QApplication, QHeaderView
 from PyQt5.uic import loadUi
 
 import database as db
-import snipe_it as si
 from model import Device
-from util import custom_logger
+from util import custom_logger, snipe_it as si
 
 user_name = ''
 devices_from_db = []

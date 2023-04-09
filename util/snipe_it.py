@@ -53,6 +53,18 @@ def build_device_from_json(device):
     return device
 
 
+def change_device_field(device_id, field, value):
+    url = config('HARDWARE_URL') + '/' + str(device_id)
+    payload = {
+        field: value
+    }
+
+    print(url)
+
+    response = requests.patch(url, json=payload, headers=headers)
+    print(response.text)
+
+
 def add_device_to_snipe_it():
     url = config('HARDWARE_URL')
 
@@ -74,5 +86,4 @@ def add_device_to_snipe_it():
 
     print(response.text)
 
-
-get_all_devices()
+# get_all_devices()
