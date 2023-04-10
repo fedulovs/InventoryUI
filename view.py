@@ -30,7 +30,11 @@ def resource_path(relative_path):
 class LoginWindow(QDialog):
     def __init__(self):
         super(LoginWindow, self).__init__()
-        loadUi("layouts/user_cloud.ui", self)
+        loadUi("layouts/login_screen.ui", self)
+
+        # Settings button
+        self.settings_button.setIcon(QIcon('icons/settings.svg'))
+        self.settings_button.clicked.connect(lambda: self.open_settings())
 
         # Add user button
         self.add_new_user_button.clicked.connect(lambda: self.add_new_user())
@@ -67,6 +71,29 @@ class LoginWindow(QDialog):
             widget.setCurrentIndex(widget.currentIndex() + 1)
             new_device['owner'] = user
 
+    def open_settings(self):
+        logging.info("Open Settings button clicked")
+        settings = SettingsWindow()
+        widget.addWidget(settings)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class SettingsWindow(QDialog):
+    def __init__(self):
+        super(SettingsWindow, self).__init__()
+        loadUi("layouts/settings.ui", self)
+
+        self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
+        self.back_button.clicked.connect(lambda: self.go_back())
+
+    def go_back(self):
+        logging.info("Going back to login window")
+        login_window = LoginWindow()
+        widget.addWidget(login_window)
+        widget.setFixedHeight(800)
+        widget.setFixedWidth(1200)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
 
 class CreateUserWindow(QDialog):
     def __init__(self):
@@ -74,9 +101,9 @@ class CreateUserWindow(QDialog):
         loadUi("layouts/create_user.ui", self)
 
         self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
+        self.back_button.clicked.connect(lambda: self.go_back())
 
         self.create_new_user_button.clicked.connect(lambda: self.add_new_user())
-        self.back_button.clicked.connect(lambda: self.go_back())
 
     def add_new_user(self):
         if len(self.user_name_input.text()) == 0:
