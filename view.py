@@ -124,6 +124,10 @@ class MainWindow(QDialog):
         self.mac_filter.setIcon(QIcon('icons/mac.svg'))
         self.mac_filter.setIconSize(QtCore.QSize(35, 35))
 
+        # Back button
+        self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
+        self.back_button.clicked.connect(lambda: self.go_back())
+
         # Sidebar filters
         self.all_filter.clicked.connect(lambda: self.remove_all_filters())
         self.android_filter.clicked.connect(lambda: self.filter_by_os('android'))
@@ -140,7 +144,6 @@ class MainWindow(QDialog):
         # Table settings
         self.tableWidget.horizontalHeader().setSectionResizeMode(5, QHeaderView.Stretch)
         self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
-
 
         # self.load_data(db.get_all_devices())
         self.load_data()
