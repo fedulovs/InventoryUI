@@ -168,7 +168,7 @@
                <font>
                 <family>Inter</family>
                 <pointsize>13</pointsize>
-                <bold>false</bold>
+                <bold>true</bold>
                </font>
               </property>
               <property name="styleSheet">
@@ -457,7 +457,7 @@ QPushButton {
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">border-radius : 7; border: 1px solid #D1D1D1</string>
+               <string notr="true">border-radius : 7; border: 1px solid #D1D1D1; color: black;</string>
               </property>
               <property name="placeholderText">
                <string>Search</string>
