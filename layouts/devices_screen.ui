@@ -482,7 +482,7 @@ QPushButton {
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: black;</string>
+            <string notr="true">color: black; border: 1px solid #D1D1D1; </string>
            </property>
            <property name="gridStyle">
             <enum>Qt::SolidLine</enum>
