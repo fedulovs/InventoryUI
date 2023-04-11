@@ -39,7 +39,7 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
+      <item alignment="Qt::AlignVCenter">
        <widget class="QFrame" name="frame_2">
         <property name="font">
          <font>
@@ -66,7 +66,7 @@
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>40</height>
+             <height>50</height>
             </size>
            </property>
            <property name="frameShape">
@@ -92,7 +92,7 @@
               </property>
               <property name="font">
                <font>
-                <pointsize>16</pointsize>
+                <pointsize>26</pointsize>
                 <bold>true</bold>
                </font>
               </property>
@@ -100,8 +100,7 @@
                <number>-1</number>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: black;
-</string>
+               <string notr="true">color: black;</string>
               </property>
               <property name="text">
                <string>Devices</string>
@@ -114,10 +113,16 @@
          <item alignment="Qt::AlignRight">
           <widget class="QFrame" name="frame_3">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
            </property>
            <property name="styleSheet">
             <string notr="true">color: black;</string>
@@ -150,7 +155,7 @@
               </property>
              </widget>
             </item>
-            <item>
+            <item alignment="Qt::AlignRight">
              <widget class="QLabel" name="user_name">
               <property name="sizePolicy">
                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
@@ -167,7 +172,7 @@
               <property name="font">
                <font>
                 <family>Inter</family>
-                <pointsize>13</pointsize>
+                <pointsize>15</pointsize>
                 <bold>true</bold>
                </font>
               </property>
@@ -215,7 +220,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: none;
+         <string notr="true">border: none; color: black;
 
 
 QPushButton {
@@ -482,7 +487,7 @@ QPushButton {
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: black; border: 1px solid #D1D1D1; </string>
+            <string notr="true">color: black;</string>
            </property>
            <property name="gridStyle">
             <enum>Qt::SolidLine</enum>

@@ -62,8 +62,8 @@ class LoginWindow(QDialog):
         else:
             main_window = MainWindow()
             widget.addWidget(main_window)
-            # widget.setFixedHeight(800)
-            # widget.setFixedWidth(1200)
+            widget.setFixedHeight(800)
+            widget.setFixedWidth(1200)
             widget.setCurrentIndex(widget.currentIndex() + 1)
             new_device['owner'] = user
 
@@ -140,7 +140,6 @@ class MainWindow(QDialog):
         # Table settings
         self.tableWidget.horizontalHeader().setSectionResizeMode(5, QHeaderView.Stretch)
         self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
-
 
         # self.load_data(db.get_all_devices())
         self.load_data()
