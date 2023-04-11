@@ -138,7 +138,9 @@ class MainWindow(QDialog):
         self.add_device_button.clicked.connect(lambda: self.add_device())
 
         # Table settings
-        self.tableWidget.horizontalHeader().setSectionResizeMode(5, QHeaderView.Stretch)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(4, QHeaderView.ResizeToContents)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(5, QHeaderView.ResizeToContents)
         self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
 
         # self.load_data(db.get_all_devices())
