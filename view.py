@@ -139,6 +139,7 @@ class MainWindow(QDialog):
 
         # Table settings
         self.tableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeToContents)
         self.tableWidget.horizontalHeader().setSectionResizeMode(4, QHeaderView.ResizeToContents)
         self.tableWidget.horizontalHeader().setSectionResizeMode(5, QHeaderView.ResizeToContents)
         self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
