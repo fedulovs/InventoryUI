@@ -41,6 +41,13 @@
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QFrame" name="frame_2">
+        <property name="font">
+         <font>
+          <family>Inter</family>
+          <pointsize>13</pointsize>
+          <bold>false</bold>
+         </font>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -50,6 +57,18 @@
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
           <widget class="QFrame" name="frame">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>40</height>
+            </size>
+           </property>
            <property name="frameShape">
             <enum>QFrame::StyledPanel</enum>
            </property>
@@ -57,10 +76,10 @@
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
+            <item alignment="Qt::AlignLeft|Qt::AlignTop">
              <widget class="QLabel" name="title">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -77,8 +96,12 @@
                 <bold>true</bold>
                </font>
               </property>
+              <property name="toolTipDuration">
+               <number>-1</number>
+              </property>
               <property name="styleSheet">
-               <string notr="true">color: black;</string>
+               <string notr="true">color: black;
+</string>
               </property>
               <property name="text">
                <string>Devices</string>
@@ -143,8 +166,9 @@
               </property>
               <property name="font">
                <font>
-                <pointsize>11</pointsize>
-                <bold>true</bold>
+                <family>Inter</family>
+                <pointsize>13</pointsize>
+                <bold>false</bold>
                </font>
               </property>
               <property name="styleSheet">
@@ -458,7 +482,7 @@ QPushButton {
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border: none; color: black;</string>
+            <string notr="true">color: black;</string>
            </property>
            <property name="gridStyle">
             <enum>Qt::SolidLine</enum>

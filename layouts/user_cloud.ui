@@ -274,7 +274,7 @@
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: black;</string>
+               <string notr="true">border-radius : 7; border: 1px solid #D1D1D1; color: black;</string>
               </property>
              </widget>
             </item>
@@ -344,7 +344,7 @@
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
-               <string notr="true">border: none;
+               <string notr="true">border: none; color: black;
                      </string>
               </property>
               <property name="text">
