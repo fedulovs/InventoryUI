@@ -62,8 +62,8 @@ class LoginWindow(QDialog):
         else:
             main_window = MainWindow()
             widget.addWidget(main_window)
-            widget.setFixedHeight(800)
-            widget.setFixedWidth(1200)
+            # widget.setFixedHeight(800)
+            # widget.setFixedWidth(1200)
             widget.setCurrentIndex(widget.currentIndex() + 1)
             new_device['owner'] = user
 
