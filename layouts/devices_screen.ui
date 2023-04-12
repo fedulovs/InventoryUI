@@ -311,6 +311,9 @@
              <height>50</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="toolTip">
             <string>All devices</string>
            </property>
@@ -345,6 +348,9 @@
              <height>16777215</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="toolTip">
             <string>iOS</string>
            </property>
@@ -376,6 +382,9 @@
              <height>16777215</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="toolTip">
             <string>Android</string>
            </property>
@@ -401,6 +410,9 @@
              <height>50</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="toolTip">
             <string>Windows</string>
            </property>
@@ -425,6 +437,9 @@
              <width>50</width>
              <height>50</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="toolTip">
             <string>MacOS</string>
