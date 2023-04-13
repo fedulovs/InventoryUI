@@ -30,7 +30,7 @@ def resource_path(relative_path):
 class LoginWindow(QDialog):
     def __init__(self):
         super(LoginWindow, self).__init__()
-        loadUi("layouts/login_screen.ui", self)
+        loadUi("layouts/user_cloud.ui", self)
 
         # Settings button
         # self.settings_button.setIcon(QIcon('icons/settings.svg'))
