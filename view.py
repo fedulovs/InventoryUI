@@ -30,7 +30,11 @@ def resource_path(relative_path):
 class LoginWindow(QDialog):
     def __init__(self):
         super(LoginWindow, self).__init__()
-        loadUi("layouts/user_cloud.ui", self)
+        loadUi("layouts/login_screen.ui", self)
+
+        # Settings button
+        # self.settings_button.setIcon(QIcon('icons/settings.svg'))
+        # self.settings_button.clicked.connect(lambda: self.open_settings())
 
         # Add user button
         self.add_new_user_button.clicked.connect(lambda: self.add_new_user())
@@ -66,6 +70,29 @@ class LoginWindow(QDialog):
             # widget.setFixedWidth(1200)
             widget.setCurrentIndex(widget.currentIndex() + 1)
             new_device['owner'] = user
+
+    def open_settings(self):
+        logging.info("Open Settings button clicked")
+        settings = SettingsWindow()
+        widget.addWidget(settings)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class SettingsWindow(QDialog):
+    def __init__(self):
+        super(SettingsWindow, self).__init__()
+        loadUi("layouts/settings.ui", self)
+
+        self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
+        self.back_button.clicked.connect(lambda: self.go_back())
+
+    def go_back(self):
+        logging.info("Going back to login window")
+        login_window = LoginWindow()
+        widget.addWidget(login_window)
+        widget.setFixedHeight(800)
+        widget.setFixedWidth(1200)
+        widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
 class CreateUserWindow(QDialog):
@@ -124,6 +151,10 @@ class MainWindow(QDialog):
         self.mac_filter.setIcon(QIcon('icons/mac.svg'))
         self.mac_filter.setIconSize(QtCore.QSize(35, 35))
 
+        # Back button
+        self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
+        self.back_button.clicked.connect(lambda: self.go_back())
+
         # Sidebar filters
         self.all_filter.clicked.connect(lambda: self.remove_all_filters())
         self.android_filter.clicked.connect(lambda: self.filter_by_os('android'))
@@ -138,9 +169,11 @@ class MainWindow(QDialog):
         self.add_device_button.clicked.connect(lambda: self.add_device())
 
         # Table settings
-        self.tableWidget.horizontalHeader().setSectionResizeMode(5, QHeaderView.Stretch)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeToContents)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(4, QHeaderView.ResizeToContents)
+        self.tableWidget.horizontalHeader().setSectionResizeMode(5, QHeaderView.ResizeToContents)
         self.tableWidget.selectionModel().selectionChanged.connect(self.on_selection_changed)
-
 
         # self.load_data(db.get_all_devices())
         self.load_data()

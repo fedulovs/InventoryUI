@@ -1,116 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>Dialog</class>
-    <widget class="QDialog" name="Dialog">
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>412</width>
-                <height>504</height>
-            </rect>
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>412</width>
+    <height>504</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: white; border: none; color: black;</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item alignment="Qt::AlignLeft|Qt::AlignTop">
+       <widget class="QFrame" name="frame_3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-        <property name="windowTitle">
-            <string>Dialog</string>
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>0</height>
+         </size>
         </property>
-        <property name="styleSheet">
-            <string notr="true">background-color: white</string>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-                <widget class="QFrame" name="frame">
-                    <property name="sizePolicy">
-                        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>0</width>
-                            <height>60</height>
-                        </size>
-                    </property>
-                    <property name="frameShape">
-                        <enum>QFrame::StyledPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                        <enum>QFrame::Raised</enum>
-                    </property>
-                    <layout class="QHBoxLayout" name="horizontalLayout">
-                        <property name="spacing">
-                            <number>0</number>
-                        </property>
-                        <property name="leftMargin">
-                            <number>0</number>
-                        </property>
-                        <property name="topMargin">
-                            <number>0</number>
-                        </property>
-                        <property name="rightMargin">
-                            <number>0</number>
-                        </property>
-                        <property name="bottomMargin">
-                            <number>0</number>
-                        </property>
-                        <item alignment="Qt::AlignLeft|Qt::AlignTop">
-                            <widget class="QFrame" name="frame_3">
-                                <property name="sizePolicy">
-                                    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="minimumSize">
-                                    <size>
-                                        <width>50</width>
-                                        <height>0</height>
-                                    </size>
-                                </property>
-                                <property name="frameShape">
-                                    <enum>QFrame::StyledPanel</enum>
-                                </property>
-                                <property name="frameShadow">
-                                    <enum>QFrame::Raised</enum>
-                                </property>
-                                <layout class="QHBoxLayout" name="horizontalLayout_2">
-                                    <property name="spacing">
-                                        <number>0</number>
-                                    </property>
-                                    <property name="leftMargin">
-                                        <number>0</number>
-                                    </property>
-                                    <property name="topMargin">
-                                        <number>0</number>
-                                    </property>
-                                    <property name="rightMargin">
-                                        <number>0</number>
-                                    </property>
-                                    <property name="bottomMargin">
-                                        <number>0</number>
-                                    </property>
-                                    <item alignment="Qt::AlignLeft|Qt::AlignTop">
-                                        <widget class="QPushButton" name="backButton">
-                                            <property name="sizePolicy">
-                                                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                                                    <horstretch>0</horstretch>
-                                                    <verstretch>0</verstretch>
-                                                </sizepolicy>
-                                            </property>
-                                            <property name="minimumSize">
-                                                <size>
-                                                    <width>50</width>
-                                                    <height>50</height>
-                                                </size>
-                                            </property>
-                                            <property name="maximumSize">
-                                                <size>
-                                                    <width>50</width>
-                                                    <height>50</height>
-                                                </size>
-                                            </property>
-                                            <property name="styleSheet">
-                                                <string notr="true">QPushButton {
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item alignment="Qt::AlignLeft|Qt::AlignTop">
+          <widget class="QPushButton" name="backButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>50</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
                                                     color: white;
                                                     border: none;
                                                     border-radius: 10;
@@ -122,216 +122,215 @@
                                                     border-radius: 10;
                                                     }
                                                 </string>
-                                            </property>
-                                            <property name="text">
-                                                <string/>
-                                            </property>
-                                        </widget>
-                                    </item>
-                                </layout>
-                            </widget>
-                        </item>
-                        <item>
-                            <widget class="QFrame" name="frame_4">
-                                <property name="sizePolicy">
-                                    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="frameShape">
-                                    <enum>QFrame::StyledPanel</enum>
-                                </property>
-                                <property name="frameShadow">
-                                    <enum>QFrame::Raised</enum>
-                                </property>
-                                <layout class="QHBoxLayout" name="horizontalLayout_3">
-                                    <property name="spacing">
-                                        <number>0</number>
-                                    </property>
-                                    <property name="leftMargin">
-                                        <number>0</number>
-                                    </property>
-                                    <property name="topMargin">
-                                        <number>0</number>
-                                    </property>
-                                    <property name="rightMargin">
-                                        <number>0</number>
-                                    </property>
-                                    <property name="bottomMargin">
-                                        <number>0</number>
-                                    </property>
-                                    <item>
-                                        <widget class="QLabel" name="title_2">
-                                            <property name="sizePolicy">
-                                                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                                                    <horstretch>0</horstretch>
-                                                    <verstretch>0</verstretch>
-                                                </sizepolicy>
-                                            </property>
-                                            <property name="minimumSize">
-                                                <size>
-                                                    <width>100</width>
-                                                    <height>30</height>
-                                                </size>
-                                            </property>
-                                            <property name="font">
-                                                <font>
-                                                    <pointsize>12</pointsize>
-                                                    <weight>75</weight>
-                                                    <bold>true</bold>
-                                                </font>
-                                            </property>
-                                            <property name="text">
-                                                <string>Device</string>
-                                            </property>
-                                            <property name="alignment">
-                                                <set>Qt::AlignCenter</set>
-                                            </property>
-                                        </widget>
-                                    </item>
-                                </layout>
-                            </widget>
-                        </item>
-                        <item>
-                            <widget class="QFrame" name="frame_5">
-                                <property name="sizePolicy">
-                                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="minimumSize">
-                                    <size>
-                                        <width>50</width>
-                                        <height>50</height>
-                                    </size>
-                                </property>
-                                <property name="maximumSize">
-                                    <size>
-                                        <width>50</width>
-                                        <height>50</height>
-                                    </size>
-                                </property>
-                                <property name="frameShape">
-                                    <enum>QFrame::StyledPanel</enum>
-                                </property>
-                                <property name="frameShadow">
-                                    <enum>QFrame::Raised</enum>
-                                </property>
-                            </widget>
-                        </item>
-                    </layout>
-                </widget>
-            </item>
-            <item>
-                <widget class="QFrame" name="frame_2">
-                    <property name="sizePolicy">
-                        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="frameShape">
-                        <enum>QFrame::StyledPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                        <enum>QFrame::Raised</enum>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_2">
-                        <item>
-                            <widget class="QLineEdit" name="device_input">
-                                <property name="minimumSize">
-                                    <size>
-                                        <width>0</width>
-                                        <height>40</height>
-                                    </size>
-                                </property>
-                                <property name="font">
-                                    <font>
-                                        <pointsize>10</pointsize>
-                                    </font>
-                                </property>
-                                <property name="styleSheet">
-                                    <string notr="true">border-radius : 7; border: 2px solid #D1D1D1</string>
-                                </property>
-                                <property name="placeholderText">
-                                    <string>Device</string>
-                                </property>
-                            </widget>
-                        </item>
-                        <item>
-                            <widget class="QLineEdit" name="brand_input">
-                                <property name="minimumSize">
-                                    <size>
-                                        <width>0</width>
-                                        <height>40</height>
-                                    </size>
-                                </property>
-                                <property name="font">
-                                    <font>
-                                        <pointsize>10</pointsize>
-                                    </font>
-                                </property>
-                                <property name="styleSheet">
-                                    <string notr="true">border-radius : 7; border: 2px solid #D1D1D1</string>
-                                </property>
-                                <property name="placeholderText">
-                                    <string>Brand</string>
-                                </property>
-                            </widget>
-                        </item>
-                    </layout>
-                </widget>
-            </item>
-            <item>
-                <widget class="QFrame" name="frame_6">
-                    <property name="sizePolicy">
-                        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>0</width>
-                            <height>80</height>
-                        </size>
-                    </property>
-                    <property name="frameShape">
-                        <enum>QFrame::StyledPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                        <enum>QFrame::Raised</enum>
-                    </property>
-                    <widget class="QPushButton" name="nextButton">
-                        <property name="geometry">
-                            <rect>
-                                <x>10</x>
-                                <y>0</y>
-                                <width>374</width>
-                                <height>40</height>
-                            </rect>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>0</width>
-                                <height>40</height>
-                            </size>
-                        </property>
-                        <property name="font">
-                            <font>
-                                <pointsize>10</pointsize>
-                            </font>
-                        </property>
-                        <property name="styleSheet">
-                            <string notr="true">QPushButton {
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame_4">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="title_2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Device</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame_5">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="frame_2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLineEdit" name="device_input">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius : 7; border: 2px solid #D1D1D1</string>
+        </property>
+        <property name="placeholderText">
+         <string>Device</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="brand_input">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius : 7; border: 2px solid #D1D1D1</string>
+        </property>
+        <property name="placeholderText">
+         <string>Brand</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="frame_6">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>80</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QPushButton" name="nextButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>374</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
                                 border-radius: 15;
                                 border: 2 px solid black;
                                 background-color: #414BB2;
@@ -345,15 +344,15 @@
                                 color: white;
                                 }
                             </string>
-                        </property>
-                        <property name="text">
-                            <string>Next</string>
-                        </property>
-                    </widget>
-                </widget>
-            </item>
-        </layout>
+      </property>
+      <property name="text">
+       <string>Next</string>
+      </property>
+     </widget>
     </widget>
-    <resources/>
-    <connections/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
 </ui>
