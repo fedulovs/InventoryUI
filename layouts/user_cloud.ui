@@ -97,101 +97,53 @@
            </property>
           </widget>
          </item>
-         <item alignment="Qt::AlignRight|Qt::AlignTop">
-          <widget class="QFrame" name="frame_2">
-           <property name="styleSheet">
-            <string notr="true">color: white; border: none</string>
-           </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
+         <item>
+             <widget class="QFrame" name="frame_2">
+                 <property name="styleSheet">
+                     <string notr="true">color: white; border: none</string>
+                 </property>
+                 <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                 </property>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <property name="leftMargin">
              <number>0</number>
             </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QPushButton" name="to_dock">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true"/>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/icons/icons/arrow-down-left.svg</normaloff>:/icons/icons/arrow-down-left.svg</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="minimize">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/icons/icons/minimize-2.svg</normaloff>:/icons/icons/minimize-2.svg</iconset>
-              </property>
-             </widget>
-            </item>
-            <item alignment="Qt::AlignRight|Qt::AlignTop">
-             <widget class="QPushButton" name="close">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>16</width>
-                <height>16</height>
-               </size>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>:/icons/icons/x.svg</normaloff>:/icons/icons/x.svg</iconset>
-              </property>
-             </widget>
+               <property name="topMargin">
+                   <number>0</number>
+               </property>
+               <property name="rightMargin">
+                   <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                   <number>0</number>
+               </property>
+               <item alignment="Qt::AlignRight|Qt::AlignTop">
+                   <widget class="QPushButton" name="settings_button">
+                       <property name="sizePolicy">
+                           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                           </sizepolicy>
+                       </property>
+                       <property name="minimumSize">
+                           <size>
+                               <width>10</width>
+                               <height>10</height>
+                           </size>
+                       </property>
+                       <property name="font">
+                           <font>
+                               <pointsize>2</pointsize>
+                           </font>
+                       </property>
+                       <property name="text">
+                           <string>PushButton</string>
+                       </property>
+                   </widget>
             </item>
            </layout>
           </widget>
@@ -250,6 +202,7 @@
               <property name="font">
                <font>
                 <pointsize>-1</pointsize>
+                   <weight>75</weight>
                 <bold>true</bold>
                 <kerning>true</kerning>
                </font>
@@ -395,8 +348,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="icons.qrc"/>
- </resources>
+    <resources/>
  <connections/>
 </ui>

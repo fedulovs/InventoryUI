@@ -33,8 +33,8 @@ class LoginWindow(QDialog):
         loadUi("layouts/user_cloud.ui", self)
 
         # Settings button
-        # self.settings_button.setIcon(QIcon('icons/settings.svg'))
-        # self.settings_button.clicked.connect(lambda: self.open_settings())
+        self.settings_button.setIcon(QIcon('icons/settings_filled.svg'))
+        self.settings_button.clicked.connect(lambda: self.open_settings())
 
         # Add user button
         self.add_new_user_button.clicked.connect(lambda: self.add_new_user())
