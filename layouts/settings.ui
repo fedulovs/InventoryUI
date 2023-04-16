@@ -372,7 +372,7 @@
                   </size>
                  </property>
                  <property name="text">
-                  <string/>
+                  <string>App version</string>
                  </property>
                 </widget>
                </item>
@@ -423,7 +423,7 @@
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_5">
                <item alignment="Qt::AlignTop">
-                <widget class="QLabel" name="setting1_2">
+                <widget class="QLabel" name="style_setting_value">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                    <horstretch>0</horstretch>
@@ -447,10 +447,13 @@
                  <property name="text">
                   <string>Default</string>
                  </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
                 </widget>
                </item>
                <item alignment="Qt::AlignTop">
-                <widget class="QLabel" name="setting2_3">
+                <widget class="QLabel" name="data_source_setting_value">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                    <horstretch>0</horstretch>
@@ -466,10 +469,13 @@
                  <property name="text">
                   <string>SnipeIT</string>
                  </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
                 </widget>
                </item>
                <item alignment="Qt::AlignTop">
-                <widget class="QLabel" name="setting3_2">
+                <widget class="QLabel" name="app_version_setting_value">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                    <horstretch>0</horstretch>
@@ -483,7 +489,10 @@
                   </size>
                  </property>
                  <property name="text">
-                  <string/>
+                  <string>0.1</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                  </property>
                 </widget>
                </item>
