@@ -210,6 +210,7 @@
            <property name="font">
             <font>
              <pointsize>26</pointsize>
+             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -257,7 +258,7 @@
             <enum>QFrame::Raised</enum>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
+            <item alignment="Qt::AlignLeft">
              <widget class="QFrame" name="names_container">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
@@ -266,7 +267,11 @@
                </sizepolicy>
               </property>
               <property name="styleSheet">
-               <string notr="true">font-weight: bold</string>
+               <string notr="true">QLabel {
+                height: 30px;
+                font-weight: bold;
+                }
+               </string>
               </property>
               <property name="frameShape">
                <enum>QFrame::StyledPanel</enum>
@@ -360,7 +365,7 @@
             <item>
              <widget class="QFrame" name="values_container">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -475,6 +480,88 @@
                  </property>
                  <property name="wordWrap">
                   <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFrame" name="frame_5">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+                border: none;
+                border-radius: 10px;
+                height: 30px;
+                width: 30px;
+                }
+
+                QPushButton:hover {
+                border: 2px solid rgb(227, 227, 227);
+                background-color: rgb(227, 227, 227);
+                border-radius: 10;
+                }
+               </string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_7">
+               <item>
+                <widget class="QPushButton" name="pushButton">
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_5">
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_4">
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_3">
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_2">
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_6">
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="change_comment_button">
+                 <property name="text">
+                  <string>...</string>
                  </property>
                 </widget>
                </item>
