@@ -65,6 +65,31 @@ def change_device_field(device_id, field, value):
     print(response.text)
 
 
+def change_owner(device_id, user):
+    ready_for_deploy_status_id = 2
+    # status_id = 2 - ready for deploy
+    # checkout_to_type = user / location / asset
+    # assigned_user - user to whom the asset should be assigned to
+    # iphone13 id 974
+    # qa department id 243
+    # rory = 96
+
+    url = config('HARDWARE_URL') + '/' + str(device_id) + '/checkout'
+
+    payload = {
+        "checkout_to_type": "user",
+        "status_id": ready_for_deploy_status_id,
+        "assigned_user": user
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+
+    print(response.text)
+
+
+change_owner(974, 96)
+
+
 def add_device_to_snipe_it():
     url = config('HARDWARE_URL')
 

@@ -5,7 +5,7 @@ import sys
 import requests
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QIcon, QImage, QPixmap
-from PyQt5.QtWidgets import QDialog, QApplication, QHeaderView
+from PyQt5.QtWidgets import QDialog, QApplication, QHeaderView, QDialogButtonBox, QVBoxLayout, QLabel, QTextEdit
 from PyQt5.uic import loadUi
 
 import database as db
@@ -542,6 +542,7 @@ class DeviceInfo(QDialog):
         widget.setFixedHeight(470)  # Extended height +20 is set to fit on small screens
         widget.setFixedWidth(1120)
 
+        self.change_comment_button.clicked.connect(lambda: self.change_comment())
         self.take_device_button.clicked.connect(lambda: self.take_device())
         self.change_info_button.clicked.connect(lambda: self.change_device_info())
 
@@ -585,6 +586,17 @@ class DeviceInfo(QDialog):
         # self.identifier.setText(db_device.identifier)
         # self.comments.setText(db_device.comment)
 
+    def change_comment(self):
+        dialogue = CustomDialog()
+
+        if dialogue.exec():
+            text = dialogue.text_input.toPlainText()
+            print(text)
+            # si.change_device_field(device['id'], 'comment', "text")
+            custom_logger.write_to_custom_log(f'{device["model"]["name"]} comment is changed by {user_name}')
+        else:
+            logging.info("Editing cancelled")
+
     def take_device(self):
         logging.info("Take device button clicked")
         custom_logger.write_to_custom_log(f'{device["model"]["name"]} is taken by {user_name}')
@@ -603,6 +615,27 @@ class DeviceInfo(QDialog):
         widget.setFixedHeight(800)
         widget.setFixedWidth(1200)
         widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class CustomDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+
+        self.text_input = QTextEdit()
+        self.setWindowTitle("Change device comment")
+
+        buttons = QDialogButtonBox.Ok | QDialogButtonBox.Cancel
+
+        self.buttonBox = QDialogButtonBox(buttons)
+        self.buttonBox.accepted.connect(self.accept)
+        self.buttonBox.rejected.connect(self.reject)
+
+        self.layout = QVBoxLayout()
+        message = QLabel("New comment")
+        self.layout.addWidget(message)
+        self.layout.addWidget(self.text_input)
+        self.layout.addWidget(self.buttonBox)
+        self.setLayout(self.layout)
 
 
 if __name__ == '__main__':
