@@ -87,9 +87,6 @@ def change_owner(device_id, user):
     print(response.text)
 
 
-change_owner(974, 96)
-
-
 def add_device_to_snipe_it():
     url = config('HARDWARE_URL')
 

@@ -591,9 +591,9 @@ class DeviceInfo(QDialog):
 
         if dialogue.exec():
             text = dialogue.text_input.toPlainText()
-            print(text)
-            # si.change_device_field(device['id'], 'comment', "text")
-            custom_logger.write_to_custom_log(f'{device["model"]["name"]} comment is changed by {user_name}')
+            si.change_device_field(device['id'], 'notes', text)
+            custom_logger.write_to_custom_log(f'{device["model"]["name"]} comment is changed by {user_name}'
+                                              f', previous version was \"{device["notes"]}\"')
         else:
             logging.info("Editing cancelled")
 
