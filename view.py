@@ -113,6 +113,7 @@ class CreateUserWindow(QDialog):
                 f.write('\n')
                 f.write(''.join(self.user_name_input.text()))
                 f.close()
+        self.go_back()
 
     def go_back(self):
         logging.info("Going back to login window")
