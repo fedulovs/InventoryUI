@@ -17,8 +17,10 @@ color: white;
 
 secondary_button_light = """
 QPushButton {
+border-width: 1;
 border-radius: 15;
-border: 2 px solid black;
+border-style: solid;
+border-color: #414BB2;
 background-color: white;
 color: #414BB2
 }
