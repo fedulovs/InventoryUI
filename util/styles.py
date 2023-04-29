@@ -46,3 +46,10 @@ background-color: rgb(227, 227, 227);
 border-radius: 10;
 }                                           
 """
+
+# Search input
+search_input_light = """
+border-radius : 7; 
+border: 1px solid #D1D1D1; 
+color: black;
+"""
