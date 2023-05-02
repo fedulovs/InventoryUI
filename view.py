@@ -551,7 +551,11 @@ class DeviceInfo(QDialog):
         self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
         self.back_button.clicked.connect(lambda: self.go_back())
 
+        self.populate_device_fields()
+
         # db_device = devices_from_db[row]
+
+    def populate_device_fields(self):
         global device
 
         if is_filtered:
@@ -625,6 +629,11 @@ class DeviceInfo(QDialog):
 
             self.values.addWidget(input, 6, 1, alignment=QtCore.Qt.AlignLeft)
 
+            """Default status button if it was changed"""
+
+            if len(self.status_label.text()) > 0:
+                self.status_label.setText("")
+
             cancel_button.clicked.connect(lambda: self.switch_edit_mode())
 
             save_button.clicked.connect(lambda: self.change_comment(input.text()))
@@ -641,7 +650,8 @@ class DeviceInfo(QDialog):
 
             """Add comment back to layout"""
 
-            comment = QLabel(device['notes'])
+            new_comment = si.get_device_by_row(row)['notes']
+            comment = QLabel(new_comment)
             self.values.addWidget(comment, 6, 1, alignment=QtCore.Qt.AlignLeft)
 
             """Return edit button to layout to layout"""
@@ -663,6 +673,12 @@ class DeviceInfo(QDialog):
         si.change_device_field(device['id'], 'notes', comment)
         custom_logger.write_to_custom_log(f'{device["model"]["name"]} comment is changed by {user_name}'
                                           f', previous version was \"{device["notes"]}\"')
+
+        if si.last_response_code == 200:
+            self.status_label.setText("Saved")
+            self.switch_edit_mode()
+        else:
+            self.status_label.setText("Oops! Something went wrong")
 
     def take_device(self):
         logging.info("Take device button clicked")
@@ -703,7 +719,6 @@ class CustomDialog(QDialog):
         self.layout.addWidget(self.text_input)
         self.layout.addWidget(self.buttonBox)
         self.setLayout(self.layout)
-
 
 def deleteItems(layout):
     if layout is not None:
