@@ -3,6 +3,8 @@ from decouple import config
 
 from model import Device
 
+last_response_code = ''
+
 TEST_API_KEY = config('TEST_API_KEY')
 API_KEY = config('API_KEY')
 
@@ -64,6 +66,31 @@ def change_device_field(device_id, field, value):
     response = requests.patch(url, json=payload, headers=headers)
     print(response.text)
 
+    global last_response_code
+    last_response_code = response.status_code
+
+
+def change_owner(device_id, user):
+    ready_for_deploy_status_id = 2
+    # status_id = 2 - ready for deploy
+    # checkout_to_type = user / location / asset
+    # assigned_user - user to whom the asset should be assigned to
+    # iphone13 id 974
+    # qa department id 243
+    # rory = 96
+
+    url = config('HARDWARE_URL') + '/' + str(device_id) + '/checkout'
+
+    payload = {
+        "checkout_to_type": "user",
+        "status_id": ready_for_deploy_status_id,
+        "assigned_user": user
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+
+    print(response.text)
+
 
 def add_device_to_snipe_it():
     url = config('HARDWARE_URL')
@@ -85,5 +112,3 @@ def add_device_to_snipe_it():
     response = requests.post(url, json=payload, headers=headers)
 
     print(response.text)
-
-# get_all_devices()

@@ -5,12 +5,14 @@ import sys
 import requests
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QIcon, QImage, QPixmap
-from PyQt5.QtWidgets import QDialog, QApplication, QHeaderView
+from PyQt5.QtWidgets import QDialog, QApplication, QHeaderView, QDialogButtonBox, QVBoxLayout, QLabel, QTextEdit, \
+    QLineEdit, QPushButton
 from PyQt5.uic import loadUi
 
 import database as db
 from model import Device
 from util import custom_logger, snipe_it as si
+from util import styles
 
 user_name = ''
 devices_from_db = []
@@ -543,13 +545,18 @@ class DeviceInfo(QDialog):
         widget.setFixedHeight(470)  # Extended height +20 is set to fit on small screens
         widget.setFixedWidth(1120)
 
+        self.input = None
+        self.edit_button.clicked.connect(lambda: self.switch_edit_mode())
         self.take_device_button.clicked.connect(lambda: self.take_device())
-        self.change_info_button.clicked.connect(lambda: self.change_device_info())
 
         self.back_button.setIcon(QIcon('icons/arrow-left.svg'))
         self.back_button.clicked.connect(lambda: self.go_back())
 
+        self.populate_device_fields()
+
         # db_device = devices_from_db[row]
+
+    def populate_device_fields(self):
         global device
 
         if is_filtered:
@@ -586,6 +593,94 @@ class DeviceInfo(QDialog):
         # self.identifier.setText(db_device.identifier)
         # self.comments.setText(db_device.comment)
 
+    def switch_edit_mode(self):
+
+        save_button = QPushButton("SAVE")
+        cancel_button = QPushButton("CANCEL")
+
+        if self.edit_buttons_layout.count() < 2:
+
+            """Delete edit button"""
+
+            self.edit_button.setParent(None)
+
+            """Add save and cancel buttons"""
+
+            save_button.setStyleSheet(styles.primary_button_light)
+            cancel_button.setStyleSheet(styles.secondary_button_light)
+
+            save_button.setMinimumSize(55, 30)
+            cancel_button.setMinimumSize(70, 30)
+            self.edit_buttons_layout.addWidget(save_button, alignment=QtCore.Qt.AlignLeft)
+            self.edit_buttons_layout.addWidget(cancel_button, alignment=QtCore.Qt.AlignLeft)
+
+            """Replace comment with input"""
+
+            input = QLineEdit()
+            input.setPlaceholderText("Insert value")
+            input.setStyleSheet(styles.search_input_light)
+            input.setMaximumSize(500, 30)
+            input.setMinimumWidth(185)
+
+            number_of_widgets = self.values.count()
+
+            if number_of_widgets > 12:
+                widget_to_delete = self.values.itemAt(13).widget()
+                widget_to_delete.setParent(None)
+
+            self.values.addWidget(input, 6, 1, alignment=QtCore.Qt.AlignLeft)
+
+            """Default status button if it was changed"""
+
+            if len(self.status_label.text()) > 0:
+                self.status_label.setText("")
+
+            cancel_button.clicked.connect(lambda: self.switch_edit_mode())
+
+            save_button.clicked.connect(lambda: self.change_comment(input.text()))
+        else:
+
+            """Delete save an cancel buttons"""
+
+            deleteItems(self.edit_buttons_layout)
+
+            """Delete input box"""
+
+            widget_to_delete = self.values.itemAt(13).widget()
+            widget_to_delete.setParent(None)
+
+            """Add comment back to layout"""
+
+            new_comment = si.get_device_by_row(row)['notes']
+            comment = QLabel(new_comment)
+            self.values.addWidget(comment, 6, 1, alignment=QtCore.Qt.AlignLeft)
+
+            """Return edit button to layout to layout"""
+
+            edit_button = QPushButton("EDIT")
+            edit_button.setStyleSheet(styles.primary_button_light)
+
+            edit_button.setMinimumSize(50, 30)
+
+            edit_button.clicked.connect(lambda: self.switch_edit_mode())
+
+            self.edit_buttons_layout.addWidget(edit_button, alignment=QtCore.Qt.AlignLeft)
+
+            self.edit_button = edit_button
+
+            logging.info(f'number of widgets: {self.edit_buttons_layout.count()}')
+
+    def change_comment(self, comment):
+        si.change_device_field(device['id'], 'notes', comment)
+        custom_logger.write_to_custom_log(f'{device["model"]["name"]} comment is changed by {user_name}'
+                                          f', previous version was \"{device["notes"]}\"')
+
+        if si.last_response_code == 200:
+            self.status_label.setText("Saved")
+            self.switch_edit_mode()
+        else:
+            self.status_label.setText("Oops! Something went wrong")
+
     def take_device(self):
         logging.info("Take device button clicked")
         custom_logger.write_to_custom_log(f'{device["model"]["name"]} is taken by {user_name}')
@@ -604,6 +699,35 @@ class DeviceInfo(QDialog):
         widget.setFixedHeight(800)
         widget.setFixedWidth(1200)
         widget.setCurrentIndex(widget.currentIndex() + 1)
+
+
+class CustomDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+
+        self.text_input = QTextEdit()
+        self.setWindowTitle("Change device comment")
+
+        buttons = QDialogButtonBox.Ok | QDialogButtonBox.Cancel
+
+        self.buttonBox = QDialogButtonBox(buttons)
+        self.buttonBox.accepted.connect(self.accept)
+        self.buttonBox.rejected.connect(self.reject)
+
+        self.layout = QVBoxLayout()
+        message = QLabel("New comment")
+        self.layout.addWidget(message)
+        self.layout.addWidget(self.text_input)
+        self.layout.addWidget(self.buttonBox)
+        self.setLayout(self.layout)
+
+def deleteItems(layout):
+    if layout is not None:
+        while layout.count():
+            item = layout.takeAt(0)
+            widget = item.widget()
+            if widget is not None:
+                widget.deleteLater()
 
 
 if __name__ == '__main__':
