@@ -165,24 +165,24 @@
    </item>
    <item>
     <widget class="QFrame" name="frame_2">
-     <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-         </sizepolicy>
-     </property>
+        <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+            </sizepolicy>
+        </property>
      <property name="styleSheet">
       <string notr="true">QPushButton:hover {
-                            background-color: #090;
-                            }
-                        </string>
+          background-color: #090;
+          }
+      </string>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
+        <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+        </property>
         <layout class="QVBoxLayout" name="verticalLayout">
             <property name="bottomMargin">
                 <number>0</number>
@@ -197,16 +197,16 @@
                     </property>
                     <property name="minimumSize">
                         <size>
-          <width>0</width>
-          <height>90</height>
-         </size>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
+                            <width>0</width>
+                            <height>90</height>
+                        </size>
+                    </property>
+                    <property name="frameShape">
+                        <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>QFrame::Raised</enum>
+                    </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
           <widget class="QLabel" name="device_name">
@@ -230,18 +230,18 @@
       </item>
       <item>
        <widget class="QFrame" name="frame_4">
-        <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-            </sizepolicy>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
+           <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+               </sizepolicy>
+           </property>
+           <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+           </property>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
                <property name="bottomMargin">
                    <number>0</number>
@@ -261,12 +261,12 @@
                                }
                            </string>
                        </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
+                       <property name="frameShape">
+                           <enum>QFrame::StyledPanel</enum>
+                       </property>
+                       <property name="frameShadow">
+                           <enum>QFrame::Raised</enum>
+                       </property>
                        <layout class="QHBoxLayout" name="horizontalLayout_3">
                            <property name="spacing">
                                <number>0</number>
@@ -586,12 +586,12 @@
          </item>
          <item alignment="Qt::AlignBottom">
           <widget class="QFrame" name="buttons">
-           <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-               </sizepolicy>
-           </property>
+              <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="MinimumExpanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                  </sizepolicy>
+              </property>
            <property name="minimumSize">
             <size>
              <width>210</width>
@@ -610,16 +610,16 @@
                                                     border-radius: 15;
                                                     border: 4 px solid black;
                                                     background-color: rgb(51, 60, 140);
-                                                    color: white;
-                                                    }
-                                                </string>
+                color: white;
+                }
+            </string>
            </property>
-           <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow">
-            <enum>QFrame::Raised</enum>
-           </property>
+              <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+              </property>
               <layout class="QVBoxLayout" name="verticalLayout_2">
                   <property name="bottomMargin">
                       <number>0</number>
@@ -634,13 +634,13 @@
                           </property>
                           <property name="cursor">
                               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="toolTip">
-               <string>Take device</string>
-              </property>
-              <property name="toolTipDuration">
-                  <number>2000</number>
-              </property>
+                          </property>
+                          <property name="toolTip">
+                              <string>Take device</string>
+                          </property>
+                          <property name="toolTipDuration">
+                              <number>2000</number>
+                          </property>
                           <property name="styleSheet">
                               <string notr="true"/>
                           </property>
@@ -663,14 +663,14 @@
                     <property name="frameShadow">
                         <enum>QFrame::Raised</enum>
                     </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_8">
+                    <layout class="QHBoxLayout" name="horizontalLayout_6">
                         <property name="topMargin">
                             <number>0</number>
                         </property>
                         <property name="bottomMargin">
                             <number>0</number>
                         </property>
-                        <item alignment="Qt::AlignTop">
+                        <item>
                             <widget class="QFrame" name="frame_6">
                                 <property name="frameShape">
                                     <enum>QFrame::StyledPanel</enum>
@@ -778,6 +778,17 @@
                                     </item>
                                 </layout>
                             </widget>
+                        </item>
+                        <item>
+                            <layout class="QVBoxLayout" name="verticalLayout_8">
+                                <item>
+                                    <widget class="QLabel" name="status_label">
+                                        <property name="text">
+                                            <string/>
+                                        </property>
+                                    </widget>
+                                </item>
+                            </layout>
                         </item>
                     </layout>
                 </widget>
